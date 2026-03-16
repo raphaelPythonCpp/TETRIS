@@ -1,0 +1,12 @@
+lConstantes = [0, 0, 1.0, 0.5]
+==> scoreMoyen = 5962.0
+lConstantes = [0, 0.5, 0.5, 0]
+==> scoreMoyen = 4856.0
+lConstantes = [0, 0.5, 1.0, 0]
+==> scoreMoyen = 11102.0
+lConstantes = [0, 1.0, 1.0, 0]
+==> scoreMoyen = 3730.0
+lConstantes = [0.5, 0, 1.0, 0.5]
+==> scoreMoyen = 3126.0
+lConstantes = [0.5, 0.5, 1.0, 0]
+==> scoreMoyen = 4414.0
