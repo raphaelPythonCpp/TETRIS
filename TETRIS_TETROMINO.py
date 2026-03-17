@@ -28,6 +28,7 @@ class Tetromino(object):
             return
         if pygame.time.get_ticks() >= self.tempsAvant+self.deltaTemps:
             self.tempsAvant = pygame.time.get_ticks()
+            print(self.x,self.y)
             self.descendre()
     def descendre(self, dy=1):
         if self.jeu.tester_chevauchement(self.jeu.grille, self.x, self.y+1, self.orientation, self.type):
@@ -40,6 +41,7 @@ class Tetromino(object):
         self.yOmbre = None
         self.jeu.mettre_dans_grille(self.jeu.grille, self.x, self.y, self.orientation, self.type, self.couleur, coin=False)
         self.jeu.tester_lignes(self.jeu.grille)
+        self.jeu.changer_nb_coups(deltaCoups=1)
         self.jeu.generer_piece()
 
     def tourner(self, changement):
