@@ -5,15 +5,18 @@ class Tetromino(object):
     def __init__(self, jeu, type):
         self.jeu = jeu
         self.type = type
+        self.orientation = rd.randint(0, 3)
+        self.matrice = self.jeu.dicoMatricesPieces[(self.type, self.orientation)]
         self.couleur = self.jeu.dicoCouleursPieces[self.type]
         self.deltaTempsInit = 1000
         self.reset()
 
     def reset(self):
-        self.orientation = rd.randint(0, 3)
-        self.x = self.jeu.nbColonnes//2 - 1#rd.randint(0, self.jeu.nbColonnes-5)
-        self.y = 0
-        self.matrice = self.jeu.dicoMatricesPieces[(self.type, self.orientation)]
+        self.x = self.jeu.nbColonnes//2 - 1
+        if all(self.matrice[0][x] == 0 for x in range(len(self.matrice[0]))):
+            self.y = -1
+        else :
+            self.y = 0
         self.tempsAvant = pygame.time.get_ticks()
         self.deltaTemps = self.deltaTempsInit #ms
         self.bouge = True
@@ -28,7 +31,6 @@ class Tetromino(object):
             return
         if pygame.time.get_ticks() >= self.tempsAvant+self.deltaTemps:
             self.tempsAvant = pygame.time.get_ticks()
-            print(self.x,self.y)
             self.descendre()
     def descendre(self, dy=1):
         if self.jeu.tester_chevauchement(self.jeu.grille, self.x, self.y+1, self.orientation, self.type):
