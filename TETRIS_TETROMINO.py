@@ -44,6 +44,7 @@ class Tetromino(object):
         self.jeu.mettre_dans_grille(self.jeu.grille, self.x, self.y, self.orientation, self.type, self.couleur, coin=False)
         self.jeu.tester_lignes(self.jeu.grille)
         self.jeu.changer_nb_coups(deltaCoups=1)
+        self.jeu.calculer_sommeNbBlocs(self.jeu.grille)
         self.jeu.generer_piece()
 
     def tourner(self, changement):

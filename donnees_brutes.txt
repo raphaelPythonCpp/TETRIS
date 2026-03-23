@@ -1,0 +1,1152 @@
+lConstantes = [0, 0.5, 0.5, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18628.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18044.5
+lConstantes = [0, 0.5, 0.5, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18264.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 17605.3
+lConstantes = [0, 0.5, 0.5, 1.0, 1.0, 0]
+==> scoreMoyen = 18768.0
+==> nbCoupsMoyen = 953.9
+==> moyenneSommeSommeNbBlocs = 26122.5
+lConstantes = [0, 0.5, 0.5, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18352.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19738.3
+lConstantes = [0, 0.5, 0.5, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18286.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18445.9
+lConstantes = [0, 0.5, 1.0, 0, 0, 0]
+==> scoreMoyen = 13272.0
+==> nbCoupsMoyen = 420.2
+==> moyenneSommeSommeNbBlocs = 17601.2
+lConstantes = [0, 0.5, 1.0, 0, 0, 0.5]
+==> scoreMoyen = 15148.0
+==> nbCoupsMoyen = 763.7
+==> moyenneSommeSommeNbBlocs = 25015.8
+lConstantes = [0, 0.5, 1.0, 0, 0, 1.0]
+==> scoreMoyen = 17548.0
+==> nbCoupsMoyen = 867.4
+==> moyenneSommeSommeNbBlocs = 28590.6
+lConstantes = [0, 0.5, 1.0, 0, 0.5, 0]
+==> scoreMoyen = 21206.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 36236.2
+lConstantes = [0, 0.5, 1.0, 0, 0.5, 0.5]
+==> scoreMoyen = 18412.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 24578.5
+lConstantes = [0, 0.5, 1.0, 0, 0.5, 1.0]
+==> scoreMoyen = 18386.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23962.0
+lConstantes = [0, 0.5, 1.0, 0, 1.0, 0]
+==> scoreMoyen = 4192.0
+==> nbCoupsMoyen = 247.9
+==> moyenneSommeSommeNbBlocs = 13280.3
+lConstantes = [0, 0.5, 1.0, 0, 1.0, 0.5]
+==> scoreMoyen = 17294.0
+==> nbCoupsMoyen = 955.5
+==> moyenneSommeSommeNbBlocs = 29840.7
+lConstantes = [0, 0.5, 1.0, 0, 1.0, 1.0]
+==> scoreMoyen = 18046.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 29502.4
+lConstantes = [0, 0.5, 1.0, 0.5, 0, 0]
+==> scoreMoyen = 17974.0
+==> nbCoupsMoyen = 529.7
+==> moyenneSommeSommeNbBlocs = 20300.8
+lConstantes = [0, 0.5, 1.0, 0.5, 0, 0.5]
+==> scoreMoyen = 14422.0
+==> nbCoupsMoyen = 670.8
+==> moyenneSommeSommeNbBlocs = 22191.6
+lConstantes = [0, 0.5, 1.0, 0.5, 0, 1.0]
+==> scoreMoyen = 12550.0
+==> nbCoupsMoyen = 615.8
+==> moyenneSommeSommeNbBlocs = 20062.2
+lConstantes = [0, 0.5, 1.0, 0.5, 0.5, 0]
+==> scoreMoyen = 22788.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 25124.8
+lConstantes = [0, 0.5, 1.0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18694.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20710.3
+lConstantes = [0, 0.5, 1.0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18732.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21406.9
+lConstantes = [0, 0.5, 1.0, 0.5, 1.0, 0]
+==> scoreMoyen = 18268.0
+==> nbCoupsMoyen = 913.7
+==> moyenneSommeSommeNbBlocs = 29030.7
+lConstantes = [0, 0.5, 1.0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 18154.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23131.3
+lConstantes = [0, 0.5, 1.0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18114.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21730.9
+lConstantes = [0, 0.5, 1.0, 1.0, 0, 0]
+==> scoreMoyen = 17636.0
+==> nbCoupsMoyen = 477.0
+==> moyenneSommeSommeNbBlocs = 17801.9
+lConstantes = [0, 0.5, 1.0, 1.0, 0, 0.5]
+==> scoreMoyen = 14810.0
+==> nbCoupsMoyen = 659.8
+==> moyenneSommeSommeNbBlocs = 18008.7
+lConstantes = [0, 0.5, 1.0, 1.0, 0, 1.0]
+==> scoreMoyen = 13692.0
+==> nbCoupsMoyen = 656.4
+==> moyenneSommeSommeNbBlocs = 19250.3
+lConstantes = [0, 0.5, 1.0, 1.0, 0.5, 0]
+==> scoreMoyen = 25462.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 22396.0
+lConstantes = [0, 0.5, 1.0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18982.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18536.8
+lConstantes = [0, 0.5, 1.0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 17956.0
+==> nbCoupsMoyen = 969.0
+==> moyenneSommeSommeNbBlocs = 19075.8
+lConstantes = [0, 0.5, 1.0, 1.0, 1.0, 0]
+==> scoreMoyen = 19402.0
+==> nbCoupsMoyen = 936.2
+==> moyenneSommeSommeNbBlocs = 24866.4
+lConstantes = [0, 0.5, 1.0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18520.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19712.2
+lConstantes = [0, 0.5, 1.0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18156.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19799.5
+lConstantes = [0, 1.0, 0, 0, 0, 0]
+==> scoreMoyen = 234.0
+==> nbCoupsMoyen = 41.2
+==> moyenneSommeSommeNbBlocs = 2356.5
+lConstantes = [0, 1.0, 0, 0, 0, 0.5]
+==> scoreMoyen = 988.0
+==> nbCoupsMoyen = 83.3
+==> moyenneSommeSommeNbBlocs = 4473.6
+lConstantes = [0, 1.0, 0, 0, 0, 1.0]
+==> scoreMoyen = 742.0
+==> nbCoupsMoyen = 69.5
+==> moyenneSommeSommeNbBlocs = 4013.0
+lConstantes = [0, 1.0, 0, 0, 0.5, 0]
+==> scoreMoyen = 84.0
+==> nbCoupsMoyen = 31.4
+==> moyenneSommeSommeNbBlocs = 1753.1
+lConstantes = [0, 1.0, 0, 0, 0.5, 0.5]
+==> scoreMoyen = 448.0
+==> nbCoupsMoyen = 52.0
+==> moyenneSommeSommeNbBlocs = 2618.0
+lConstantes = [0, 1.0, 0, 0, 0.5, 1.0]
+==> scoreMoyen = 656.0
+==> nbCoupsMoyen = 64.0
+==> moyenneSommeSommeNbBlocs = 3459.3
+lConstantes = [0, 1.0, 0, 0, 1.0, 0]
+==> scoreMoyen = 116.0
+==> nbCoupsMoyen = 34.1
+==> moyenneSommeSommeNbBlocs = 1965.8
+lConstantes = [0, 1.0, 0, 0, 1.0, 0.5]
+==> scoreMoyen = 566.0
+==> nbCoupsMoyen = 58.5
+==> moyenneSommeSommeNbBlocs = 3222.1
+lConstantes = [0, 1.0, 0, 0, 1.0, 1.0]
+==> scoreMoyen = 426.0
+==> nbCoupsMoyen = 51.2
+==> moyenneSommeSommeNbBlocs = 2753.9
+lConstantes = [0, 1.0, 0, 0.5, 0, 0]
+==> scoreMoyen = 6470.0
+==> nbCoupsMoyen = 265.7
+==> moyenneSommeSommeNbBlocs = 13097.4
+lConstantes = [0, 1.0, 0, 0.5, 0, 0.5]
+==> scoreMoyen = 17780.0
+==> nbCoupsMoyen = 908.9
+==> moyenneSommeSommeNbBlocs = 32675.5
+lConstantes = [0, 1.0, 0, 0.5, 0, 1.0]
+==> scoreMoyen = 17498.0
+==> nbCoupsMoyen = 914.4
+==> moyenneSommeSommeNbBlocs = 29745.7
+lConstantes = [0, 1.0, 0, 0.5, 0.5, 0]
+==> scoreMoyen = 4392.0
+==> nbCoupsMoyen = 256.8
+==> moyenneSommeSommeNbBlocs = 12020.5
+lConstantes = [0, 1.0, 0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 15886.0
+==> nbCoupsMoyen = 886.0
+==> moyenneSommeSommeNbBlocs = 26734.4
+lConstantes = [0, 1.0, 0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 15546.0
+==> nbCoupsMoyen = 869.8
+==> moyenneSommeSommeNbBlocs = 24508.1
+lConstantes = [0, 1.0, 0, 0.5, 1.0, 0]
+==> scoreMoyen = 1780.0
+==> nbCoupsMoyen = 125.7
+==> moyenneSommeSommeNbBlocs = 7551.3
+lConstantes = [0, 1.0, 0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 7352.0
+==> nbCoupsMoyen = 434.9
+==> moyenneSommeSommeNbBlocs = 19027.4
+lConstantes = [0, 1.0, 0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 10378.0
+==> nbCoupsMoyen = 599.5
+==> moyenneSommeSommeNbBlocs = 22996.5
+lConstantes = [0, 1.0, 0, 1.0, 0, 0]
+==> scoreMoyen = 9792.0
+==> nbCoupsMoyen = 367.7
+==> moyenneSommeSommeNbBlocs = 17164.2
+lConstantes = [0, 1.0, 0, 1.0, 0, 0.5]
+==> scoreMoyen = 17686.0
+==> nbCoupsMoyen = 891.2
+==> moyenneSommeSommeNbBlocs = 28641.8
+lConstantes = [0, 1.0, 0, 1.0, 0, 1.0]
+==> scoreMoyen = 15714.0
+==> nbCoupsMoyen = 795.2
+==> moyenneSommeSommeNbBlocs = 24245.1
+lConstantes = [0, 1.0, 0, 1.0, 0.5, 0]
+==> scoreMoyen = 20096.0
+==> nbCoupsMoyen = 920.1
+==> moyenneSommeSommeNbBlocs = 24581.8
+lConstantes = [0, 1.0, 0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18780.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18608.8
+lConstantes = [0, 1.0, 0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18552.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18635.8
+lConstantes = [0, 1.0, 0, 1.0, 1.0, 0]
+==> scoreMoyen = 7156.0
+==> nbCoupsMoyen = 403.0
+==> moyenneSommeSommeNbBlocs = 20601.7
+lConstantes = [0, 1.0, 0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18348.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 29333.2
+lConstantes = [0, 1.0, 0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 17018.0
+==> nbCoupsMoyen = 939.1
+==> moyenneSommeSommeNbBlocs = 22945.9
+lConstantes = [0, 1.0, 0.5, 0, 0, 0]
+==> scoreMoyen = 5066.0
+==> nbCoupsMoyen = 210.3
+==> moyenneSommeSommeNbBlocs = 11149.1
+lConstantes = [0, 1.0, 0.5, 0, 0, 0.5]
+==> scoreMoyen = 11156.0
+==> nbCoupsMoyen = 592.8
+==> moyenneSommeSommeNbBlocs = 21700.2
+lConstantes = [0, 1.0, 0.5, 0, 0, 1.0]
+==> scoreMoyen = 15856.0
+==> nbCoupsMoyen = 831.0
+==> moyenneSommeSommeNbBlocs = 27966.8
+lConstantes = [0, 1.0, 0.5, 0, 0.5, 0]
+==> scoreMoyen = 6072.0
+==> nbCoupsMoyen = 346.3
+==> moyenneSommeSommeNbBlocs = 16503.4
+lConstantes = [0, 1.0, 0.5, 0, 0.5, 0.5]
+==> scoreMoyen = 17968.0
+==> nbCoupsMoyen = 997.5
+==> moyenneSommeSommeNbBlocs = 32753.4
+lConstantes = [0, 1.0, 0.5, 0, 0.5, 1.0]
+==> scoreMoyen = 18032.0
+==> nbCoupsMoyen = 988.8
+==> moyenneSommeSommeNbBlocs = 30387.0
+lConstantes = [0, 1.0, 0.5, 0, 1.0, 0]
+==> scoreMoyen = 2286.0
+==> nbCoupsMoyen = 154.5
+==> moyenneSommeSommeNbBlocs = 8452.2
+lConstantes = [0, 1.0, 0.5, 0, 1.0, 0.5]
+==> scoreMoyen = 4504.0
+==> nbCoupsMoyen = 278.8
+==> moyenneSommeSommeNbBlocs = 14555.0
+lConstantes = [0, 1.0, 0.5, 0, 1.0, 1.0]
+==> scoreMoyen = 7800.0
+==> nbCoupsMoyen = 459.2
+==> moyenneSommeSommeNbBlocs = 20420.3
+lConstantes = [0, 1.0, 0.5, 0.5, 0, 0]
+==> scoreMoyen = 9280.0
+==> nbCoupsMoyen = 379.3
+==> moyenneSommeSommeNbBlocs = 17851.9
+lConstantes = [0, 1.0, 0.5, 0.5, 0, 0.5]
+==> scoreMoyen = 18524.0
+==> nbCoupsMoyen = 943.1
+==> moyenneSommeSommeNbBlocs = 30658.5
+lConstantes = [0, 1.0, 0.5, 0.5, 0, 1.0]
+==> scoreMoyen = 14188.0
+==> nbCoupsMoyen = 761.4
+==> moyenneSommeSommeNbBlocs = 27010.8
+lConstantes = [0, 1.0, 0.5, 0.5, 0.5, 0]
+==> scoreMoyen = 17186.0
+==> nbCoupsMoyen = 843.7
+==> moyenneSommeSommeNbBlocs = 25714.3
+lConstantes = [0, 1.0, 0.5, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18346.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23378.8
+lConstantes = [0, 1.0, 0.5, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18424.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21407.8
+lConstantes = [0, 1.0, 0.5, 0.5, 1.0, 0]
+==> scoreMoyen = 6814.0
+==> nbCoupsMoyen = 374.6
+==> moyenneSommeSommeNbBlocs = 18993.4
+lConstantes = [0, 1.0, 0.5, 0.5, 1.0, 0.5]
+==> scoreMoyen = 14492.0
+==> nbCoupsMoyen = 809.9
+==> moyenneSommeSommeNbBlocs = 26377.4
+lConstantes = [0, 1.0, 0.5, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18042.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 25528.9
+lConstantes = [0, 1.0, 0.5, 1.0, 0, 0]
+==> scoreMoyen = 9626.0
+==> nbCoupsMoyen = 364.6
+==> moyenneSommeSommeNbBlocs = 17682.8
+lConstantes = [0, 1.0, 0.5, 1.0, 0, 0.5]
+==> scoreMoyen = 17754.0
+==> nbCoupsMoyen = 895.2
+==> moyenneSommeSommeNbBlocs = 28314.0
+lConstantes = [0, 1.0, 0.5, 1.0, 0, 1.0]
+==> scoreMoyen = 16710.0
+==> nbCoupsMoyen = 861.4
+==> moyenneSommeSommeNbBlocs = 24458.7
+lConstantes = [0, 1.0, 0.5, 1.0, 0.5, 0]
+==> scoreMoyen = 20734.0
+==> nbCoupsMoyen = 956.9
+==> moyenneSommeSommeNbBlocs = 25914.5
+lConstantes = [0, 1.0, 0.5, 1.0, 0.5, 0.5]
+==> scoreMoyen = 17758.0
+==> nbCoupsMoyen = 954.5
+==> moyenneSommeSommeNbBlocs = 18524.4
+lConstantes = [0, 1.0, 0.5, 1.0, 0.5, 1.0]
+==> scoreMoyen = 17606.0
+==> nbCoupsMoyen = 967.5
+==> moyenneSommeSommeNbBlocs = 18387.0
+lConstantes = [0, 1.0, 0.5, 1.0, 1.0, 0]
+==> scoreMoyen = 18848.0
+==> nbCoupsMoyen = 945.0
+==> moyenneSommeSommeNbBlocs = 30664.7
+lConstantes = [0, 1.0, 0.5, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18292.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23800.9
+lConstantes = [0, 1.0, 0.5, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18168.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19938.1
+lConstantes = [0, 1.0, 1.0, 0, 0, 0]
+==> scoreMoyen = 7836.0
+==> nbCoupsMoyen = 305.1
+==> moyenneSommeSommeNbBlocs = 16773.9
+lConstantes = [0, 1.0, 1.0, 0, 0, 0.5]
+==> scoreMoyen = 16992.0
+==> nbCoupsMoyen = 875.4
+==> moyenneSommeSommeNbBlocs = 31241.8
+lConstantes = [0, 1.0, 1.0, 0, 0, 1.0]
+==> scoreMoyen = 14064.0
+==> nbCoupsMoyen = 737.1
+==> moyenneSommeSommeNbBlocs = 26310.1
+lConstantes = [0, 1.0, 1.0, 0, 0.5, 0]
+==> scoreMoyen = 20116.0
+==> nbCoupsMoyen = 977.3
+==> moyenneSommeSommeNbBlocs = 33722.1
+lConstantes = [0, 1.0, 1.0, 0, 0.5, 0.5]
+==> scoreMoyen = 18620.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 25691.8
+lConstantes = [0, 1.0, 1.0, 0, 0.5, 1.0]
+==> scoreMoyen = 18328.0
+==> nbCoupsMoyen = 981.1
+==> moyenneSommeSommeNbBlocs = 24280.6
+lConstantes = [0, 1.0, 1.0, 0, 1.0, 0]
+==> scoreMoyen = 7588.0
+==> nbCoupsMoyen = 421.7
+==> moyenneSommeSommeNbBlocs = 21784.9
+lConstantes = [0, 1.0, 1.0, 0, 1.0, 0.5]
+==> scoreMoyen = 15550.0
+==> nbCoupsMoyen = 869.1
+==> moyenneSommeSommeNbBlocs = 32260.3
+lConstantes = [0, 1.0, 1.0, 0, 1.0, 1.0]
+==> scoreMoyen = 16752.0
+==> nbCoupsMoyen = 928.2
+==> moyenneSommeSommeNbBlocs = 31262.1
+lConstantes = [0, 1.0, 1.0, 0.5, 0, 0]
+==> scoreMoyen = 13616.0
+==> nbCoupsMoyen = 482.0
+==> moyenneSommeSommeNbBlocs = 22024.9
+lConstantes = [0, 1.0, 1.0, 0.5, 0, 0.5]
+==> scoreMoyen = 14908.0
+==> nbCoupsMoyen = 722.3
+==> moyenneSommeSommeNbBlocs = 22744.0
+lConstantes = [0, 1.0, 1.0, 0.5, 0, 1.0]
+==> scoreMoyen = 13296.0
+==> nbCoupsMoyen = 693.6
+==> moyenneSommeSommeNbBlocs = 25783.0
+lConstantes = [0, 1.0, 1.0, 0.5, 0.5, 0]
+==> scoreMoyen = 21942.0
+==> nbCoupsMoyen = 986.4
+==> moyenneSommeSommeNbBlocs = 27927.9
+lConstantes = [0, 1.0, 1.0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18666.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21063.1
+lConstantes = [0, 1.0, 1.0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18828.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21345.7
+lConstantes = [0, 1.0, 1.0, 0.5, 1.0, 0]
+==> scoreMoyen = 18468.0
+==> nbCoupsMoyen = 918.7
+==> moyenneSommeSommeNbBlocs = 33988.4
+lConstantes = [0, 1.0, 1.0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 18294.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23109.7
+lConstantes = [0, 1.0, 1.0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18114.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 24399.4
+lConstantes = [0, 1.0, 1.0, 1.0, 0, 0]
+==> scoreMoyen = 15474.0
+==> nbCoupsMoyen = 490.9
+==> moyenneSommeSommeNbBlocs = 20846.1
+lConstantes = [0, 1.0, 1.0, 1.0, 0, 0.5]
+==> scoreMoyen = 17072.0
+==> nbCoupsMoyen = 829.3
+==> moyenneSommeSommeNbBlocs = 21682.4
+lConstantes = [0, 1.0, 1.0, 1.0, 0, 1.0]
+==> scoreMoyen = 20124.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 28266.7
+lConstantes = [0, 1.0, 1.0, 1.0, 0.5, 0]
+==> scoreMoyen = 24006.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 24780.1
+lConstantes = [0, 1.0, 1.0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 19156.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21715.6
+lConstantes = [0, 1.0, 1.0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18482.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19777.9
+lConstantes = [0, 1.0, 1.0, 1.0, 1.0, 0]
+==> scoreMoyen = 20502.0
+==> nbCoupsMoyen = 954.5
+==> moyenneSommeSommeNbBlocs = 25477.8
+lConstantes = [0, 1.0, 1.0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18452.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21114.4
+lConstantes = [0, 1.0, 1.0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18288.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21287.2
+lConstantes = [0.5, 0, 0, 0, 0, 0]
+==> scoreMoyen = 244.0
+==> nbCoupsMoyen = 40.7
+==> moyenneSommeSommeNbBlocs = 2444.2
+lConstantes = [0.5, 0, 0, 0, 0, 0.5]
+==> scoreMoyen = 676.0
+==> nbCoupsMoyen = 64.2
+==> moyenneSommeSommeNbBlocs = 3461.7
+lConstantes = [0.5, 0, 0, 0, 0, 1.0]
+==> scoreMoyen = 742.0
+==> nbCoupsMoyen = 68.3
+==> moyenneSommeSommeNbBlocs = 3640.7
+lConstantes = [0.5, 0, 0, 0, 0.5, 0]
+==> scoreMoyen = 130.0
+==> nbCoupsMoyen = 34.1
+==> moyenneSommeSommeNbBlocs = 1833.9
+lConstantes = [0.5, 0, 0, 0, 0.5, 0.5]
+==> scoreMoyen = 544.0
+==> nbCoupsMoyen = 56.5
+==> moyenneSommeSommeNbBlocs = 3120.1
+lConstantes = [0.5, 0, 0, 0, 0.5, 1.0]
+==> scoreMoyen = 512.0
+==> nbCoupsMoyen = 54.5
+==> moyenneSommeSommeNbBlocs = 2789.6
+lConstantes = [0.5, 0, 0, 0, 1.0, 0]
+==> scoreMoyen = 78.0
+==> nbCoupsMoyen = 31.1
+==> moyenneSommeSommeNbBlocs = 1731.0
+lConstantes = [0.5, 0, 0, 0, 1.0, 0.5]
+==> scoreMoyen = 540.0
+==> nbCoupsMoyen = 56.7
+==> moyenneSommeSommeNbBlocs = 2844.0
+lConstantes = [0.5, 0, 0, 0, 1.0, 1.0]
+==> scoreMoyen = 596.0
+==> nbCoupsMoyen = 59.7
+==> moyenneSommeSommeNbBlocs = 3194.7
+lConstantes = [0.5, 0, 0, 0.5, 0, 0]
+==> scoreMoyen = 6550.0
+==> nbCoupsMoyen = 233.2
+==> moyenneSommeSommeNbBlocs = 10691.7
+lConstantes = [0.5, 0, 0, 0.5, 0, 0.5]
+==> scoreMoyen = 14878.0
+==> nbCoupsMoyen = 760.6
+==> moyenneSommeSommeNbBlocs = 25585.3
+lConstantes = [0.5, 0, 0, 0.5, 0, 1.0]
+==> scoreMoyen = 13142.0
+==> nbCoupsMoyen = 668.3
+==> moyenneSommeSommeNbBlocs = 25215.8
+lConstantes = [0.5, 0, 0, 0.5, 0.5, 0]
+==> scoreMoyen = 5352.0
+==> nbCoupsMoyen = 308.5
+==> moyenneSommeSommeNbBlocs = 16511.7
+lConstantes = [0.5, 0, 0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18124.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 24423.7
+lConstantes = [0.5, 0, 0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 17326.0
+==> nbCoupsMoyen = 959.7
+==> moyenneSommeSommeNbBlocs = 23451.9
+lConstantes = [0.5, 0, 0, 0.5, 1.0, 0]
+==> scoreMoyen = 2120.0
+==> nbCoupsMoyen = 143.8
+==> moyenneSommeSommeNbBlocs = 6949.6
+lConstantes = [0.5, 0, 0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 10426.0
+==> nbCoupsMoyen = 605.3
+==> moyenneSommeSommeNbBlocs = 23637.4
+lConstantes = [0.5, 0, 0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 15822.0
+==> nbCoupsMoyen = 890.7
+==> moyenneSommeSommeNbBlocs = 32205.3
+lConstantes = [0.5, 0, 0, 1.0, 0, 0]
+==> scoreMoyen = 4764.0
+==> nbCoupsMoyen = 159.3
+==> moyenneSommeSommeNbBlocs = 5983.6
+lConstantes = [0.5, 0, 0, 1.0, 0, 0.5]
+==> scoreMoyen = 7222.0
+==> nbCoupsMoyen = 369.0
+==> moyenneSommeSommeNbBlocs = 10467.5
+lConstantes = [0.5, 0, 0, 1.0, 0, 1.0]
+==> scoreMoyen = 13046.0
+==> nbCoupsMoyen = 631.7
+==> moyenneSommeSommeNbBlocs = 18951.7
+lConstantes = [0.5, 0, 0, 1.0, 0.5, 0]
+==> scoreMoyen = 19416.0
+==> nbCoupsMoyen = 891.9
+==> moyenneSommeSommeNbBlocs = 23831.0
+lConstantes = [0.5, 0, 0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18710.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 15847.6
+lConstantes = [0.5, 0, 0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18568.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 16895.2
+lConstantes = [0.5, 0, 0, 1.0, 1.0, 0]
+==> scoreMoyen = 7608.0
+==> nbCoupsMoyen = 426.1
+==> moyenneSommeSommeNbBlocs = 21540.5
+lConstantes = [0.5, 0, 0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18226.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21853.3
+lConstantes = [0.5, 0, 0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 17612.0
+==> nbCoupsMoyen = 974.8
+==> moyenneSommeSommeNbBlocs = 20679.7
+lConstantes = [0.5, 0, 0.5, 0, 0, 0]
+==> scoreMoyen = 3804.0
+==> nbCoupsMoyen = 154.0
+==> moyenneSommeSommeNbBlocs = 8106.0
+lConstantes = [0.5, 0, 0.5, 0, 0, 0.5]
+==> scoreMoyen = 9926.0
+==> nbCoupsMoyen = 518.5
+==> moyenneSommeSommeNbBlocs = 20468.2
+lConstantes = [0.5, 0, 0.5, 0, 0, 1.0]
+==> scoreMoyen = 14708.0
+==> nbCoupsMoyen = 763.7
+==> moyenneSommeSommeNbBlocs = 31494.1
+lConstantes = [0.5, 0, 0.5, 0, 0.5, 0]
+==> scoreMoyen = 5282.0
+==> nbCoupsMoyen = 293.6
+==> moyenneSommeSommeNbBlocs = 14765.5
+lConstantes = [0.5, 0, 0.5, 0, 0.5, 0.5]
+==> scoreMoyen = 16286.0
+==> nbCoupsMoyen = 908.9
+==> moyenneSommeSommeNbBlocs = 28606.5
+lConstantes = [0.5, 0, 0.5, 0, 0.5, 1.0]
+==> scoreMoyen = 16128.0
+==> nbCoupsMoyen = 898.3
+==> moyenneSommeSommeNbBlocs = 28454.8
+lConstantes = [0.5, 0, 0.5, 0, 1.0, 0]
+==> scoreMoyen = 1842.0
+==> nbCoupsMoyen = 129.3
+==> moyenneSommeSommeNbBlocs = 8059.9
+lConstantes = [0.5, 0, 0.5, 0, 1.0, 0.5]
+==> scoreMoyen = 11934.0
+==> nbCoupsMoyen = 685.2
+==> moyenneSommeSommeNbBlocs = 30562.1
+lConstantes = [0.5, 0, 0.5, 0, 1.0, 1.0]
+==> scoreMoyen = 8986.0
+==> nbCoupsMoyen = 521.6
+==> moyenneSommeSommeNbBlocs = 24240.2
+lConstantes = [0.5, 0, 0.5, 0.5, 0, 0]
+==> scoreMoyen = 4970.0
+==> nbCoupsMoyen = 152.7
+==> moyenneSommeSommeNbBlocs = 6847.8
+lConstantes = [0.5, 0, 0.5, 0.5, 0, 0.5]
+==> scoreMoyen = 12598.0
+==> nbCoupsMoyen = 645.4
+==> moyenneSommeSommeNbBlocs = 23515.7
+lConstantes = [0.5, 0, 0.5, 0.5, 0, 1.0]
+==> scoreMoyen = 9182.0
+==> nbCoupsMoyen = 458.9
+==> moyenneSommeSommeNbBlocs = 17164.5
+lConstantes = [0.5, 0, 0.5, 0.5, 0.5, 0]
+==> scoreMoyen = 21840.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 27046.3
+lConstantes = [0.5, 0, 0.5, 0.5, 0.5, 0.5]
+==> scoreMoyen = 17442.0
+==> nbCoupsMoyen = 949.7
+==> moyenneSommeSommeNbBlocs = 19966.8
+lConstantes = [0.5, 0, 0.5, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18180.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19819.3
+lConstantes = [0.5, 0, 0.5, 0.5, 1.0, 0]
+==> scoreMoyen = 7518.0
+==> nbCoupsMoyen = 417.8
+==> moyenneSommeSommeNbBlocs = 20041.0
+lConstantes = [0.5, 0, 0.5, 0.5, 1.0, 0.5]
+==> scoreMoyen = 18268.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 26203.0
+lConstantes = [0.5, 0, 0.5, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18278.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23645.2
+lConstantes = [0.5, 0, 0.5, 1.0, 0, 0]
+==> scoreMoyen = 2114.0
+==> nbCoupsMoyen = 80.7
+==> moyenneSommeSommeNbBlocs = 3606.4
+lConstantes = [0.5, 0, 0.5, 1.0, 0, 0.5]
+==> scoreMoyen = 9246.0
+==> nbCoupsMoyen = 436.1
+==> moyenneSommeSommeNbBlocs = 12624.9
+lConstantes = [0.5, 0, 0.5, 1.0, 0, 1.0]
+==> scoreMoyen = 11430.0
+==> nbCoupsMoyen = 569.4
+==> moyenneSommeSommeNbBlocs = 18391.6
+lConstantes = [0.5, 0, 0.5, 1.0, 0.5, 0]
+==> scoreMoyen = 22736.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19766.2
+lConstantes = [0.5, 0, 0.5, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18916.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 17688.1
+lConstantes = [0.5, 0, 0.5, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18340.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 17570.2
+lConstantes = [0.5, 0, 0.5, 1.0, 1.0, 0]
+==> scoreMoyen = 16020.0
+==> nbCoupsMoyen = 818.9
+==> moyenneSommeSommeNbBlocs = 25951.4
+lConstantes = [0.5, 0, 0.5, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18180.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20343.1
+lConstantes = [0.5, 0, 0.5, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18336.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19749.1
+lConstantes = [0.5, 0, 1.0, 0, 0, 0]
+==> scoreMoyen = 4480.0
+==> nbCoupsMoyen = 156.8
+==> moyenneSommeSommeNbBlocs = 6691.6
+lConstantes = [0.5, 0, 1.0, 0, 0, 0.5]
+==> scoreMoyen = 15450.0
+==> nbCoupsMoyen = 750.7
+==> moyenneSommeSommeNbBlocs = 28969.9
+lConstantes = [0.5, 0, 1.0, 0, 0, 1.0]
+==> scoreMoyen = 10022.0
+==> nbCoupsMoyen = 511.9
+==> moyenneSommeSommeNbBlocs = 17408.6
+lConstantes = [0.5, 0, 1.0, 0, 0.5, 0]
+==> scoreMoyen = 21832.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 31035.1
+lConstantes = [0.5, 0, 1.0, 0, 0.5, 0.5]
+==> scoreMoyen = 18376.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23503.9
+lConstantes = [0.5, 0, 1.0, 0, 0.5, 1.0]
+==> scoreMoyen = 18306.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23416.6
+lConstantes = [0.5, 0, 1.0, 0, 1.0, 0]
+==> scoreMoyen = 6636.0
+==> nbCoupsMoyen = 372.2
+==> moyenneSommeSommeNbBlocs = 19284.0
+lConstantes = [0.5, 0, 1.0, 0, 1.0, 0.5]
+==> scoreMoyen = 18052.0
+==> nbCoupsMoyen = 994.4
+==> moyenneSommeSommeNbBlocs = 32204.1
+lConstantes = [0.5, 0, 1.0, 0, 1.0, 1.0]
+==> scoreMoyen = 18204.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 28543.0
+lConstantes = [0.5, 0, 1.0, 0.5, 0, 0]
+==> scoreMoyen = 2788.0
+==> nbCoupsMoyen = 97.5
+==> moyenneSommeSommeNbBlocs = 4510.8
+lConstantes = [0.5, 0, 1.0, 0.5, 0, 0.5]
+==> scoreMoyen = 8816.0
+==> nbCoupsMoyen = 412.2
+==> moyenneSommeSommeNbBlocs = 14339.9
+lConstantes = [0.5, 0, 1.0, 0.5, 0, 1.0]
+==> scoreMoyen = 3826.0
+==> nbCoupsMoyen = 207.8
+==> moyenneSommeSommeNbBlocs = 8343.6
+lConstantes = [0.5, 0, 1.0, 0.5, 0.5, 0]
+==> scoreMoyen = 24672.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 26238.1
+lConstantes = [0.5, 0, 1.0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18404.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19612.3
+lConstantes = [0.5, 0, 1.0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18594.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20062.3
+lConstantes = [0.5, 0, 1.0, 0.5, 1.0, 0]
+==> scoreMoyen = 19450.0
+==> nbCoupsMoyen = 943.2
+==> moyenneSommeSommeNbBlocs = 27852.3
+lConstantes = [0.5, 0, 1.0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 18370.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 22907.2
+lConstantes = [0.5, 0, 1.0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18248.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23415.7
+lConstantes = [0.5, 0, 1.0, 1.0, 0, 0]
+==> scoreMoyen = 2386.0
+==> nbCoupsMoyen = 82.5
+==> moyenneSommeSommeNbBlocs = 3623.6
+lConstantes = [0.5, 0, 1.0, 1.0, 0, 0.5]
+==> scoreMoyen = 6732.0
+==> nbCoupsMoyen = 271.4
+==> moyenneSommeSommeNbBlocs = 9971.9
+lConstantes = [0.5, 0, 1.0, 1.0, 0, 1.0]
+==> scoreMoyen = 5626.0
+==> nbCoupsMoyen = 293.9
+==> moyenneSommeSommeNbBlocs = 9996.6
+lConstantes = [0.5, 0, 1.0, 1.0, 0.5, 0]
+==> scoreMoyen = 24490.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 22270.9
+lConstantes = [0.5, 0, 1.0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 19520.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19078.6
+lConstantes = [0.5, 0, 1.0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18802.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18674.5
+lConstantes = [0.5, 0, 1.0, 1.0, 1.0, 0]
+==> scoreMoyen = 21764.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 26599.9
+lConstantes = [0.5, 0, 1.0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18568.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19705.9
+lConstantes = [0.5, 0, 1.0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18262.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19333.3
+lConstantes = [0.5, 0.5, 0, 0, 0, 0]
+==> scoreMoyen = 274.0
+==> nbCoupsMoyen = 42.6
+==> moyenneSommeSommeNbBlocs = 2390.2
+lConstantes = [0.5, 0.5, 0, 0, 0, 0.5]
+==> scoreMoyen = 686.0
+==> nbCoupsMoyen = 66.5
+==> moyenneSommeSommeNbBlocs = 3634.4
+lConstantes = [0.5, 0.5, 0, 0, 0, 1.0]
+==> scoreMoyen = 634.0
+==> nbCoupsMoyen = 62.3
+==> moyenneSommeSommeNbBlocs = 3240.9
+lConstantes = [0.5, 0.5, 0, 0, 0.5, 0]
+==> scoreMoyen = 116.0
+==> nbCoupsMoyen = 33.1
+==> moyenneSommeSommeNbBlocs = 1843.6
+lConstantes = [0.5, 0.5, 0, 0, 0.5, 0.5]
+==> scoreMoyen = 500.0
+==> nbCoupsMoyen = 55.4
+==> moyenneSommeSommeNbBlocs = 3003.2
+lConstantes = [0.5, 0.5, 0, 0, 0.5, 1.0]
+==> scoreMoyen = 612.0
+==> nbCoupsMoyen = 60.9
+==> moyenneSommeSommeNbBlocs = 3091.1
+lConstantes = [0.5, 0.5, 0, 0, 1.0, 0]
+==> scoreMoyen = 104.0
+==> nbCoupsMoyen = 33.3
+==> moyenneSommeSommeNbBlocs = 1899.1
+lConstantes = [0.5, 0.5, 0, 0, 1.0, 0.5]
+==> scoreMoyen = 396.0
+==> nbCoupsMoyen = 48.2
+==> moyenneSommeSommeNbBlocs = 2559.7
+lConstantes = [0.5, 0.5, 0, 0, 1.0, 1.0]
+==> scoreMoyen = 514.0
+==> nbCoupsMoyen = 55.1
+==> moyenneSommeSommeNbBlocs = 3005.2
+lConstantes = [0.5, 0.5, 0, 0.5, 0, 0]
+==> scoreMoyen = 5470.0
+==> nbCoupsMoyen = 224.1
+==> moyenneSommeSommeNbBlocs = 11153.0
+lConstantes = [0.5, 0.5, 0, 0.5, 0, 0.5]
+==> scoreMoyen = 18202.0
+==> nbCoupsMoyen = 929.2
+==> moyenneSommeSommeNbBlocs = 27017.9
+lConstantes = [0.5, 0.5, 0, 0.5, 0, 1.0]
+==> scoreMoyen = 17298.0
+==> nbCoupsMoyen = 894.0
+==> moyenneSommeSommeNbBlocs = 26924.1
+lConstantes = [0.5, 0.5, 0, 0.5, 0.5, 0]
+==> scoreMoyen = 4864.0
+==> nbCoupsMoyen = 284.0
+==> moyenneSommeSommeNbBlocs = 13510.8
+lConstantes = [0.5, 0.5, 0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18008.0
+==> nbCoupsMoyen = 990.7
+==> moyenneSommeSommeNbBlocs = 25414.6
+lConstantes = [0.5, 0.5, 0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 16732.0
+==> nbCoupsMoyen = 931.8
+==> moyenneSommeSommeNbBlocs = 23210.1
+lConstantes = [0.5, 0.5, 0, 0.5, 1.0, 0]
+==> scoreMoyen = 1604.0
+==> nbCoupsMoyen = 117.0
+==> moyenneSommeSommeNbBlocs = 6563.0
+lConstantes = [0.5, 0.5, 0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 8478.0
+==> nbCoupsMoyen = 494.8
+==> moyenneSommeSommeNbBlocs = 22335.0
+lConstantes = [0.5, 0.5, 0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 8926.0
+==> nbCoupsMoyen = 523.8
+==> moyenneSommeSommeNbBlocs = 22469.2
+lConstantes = [0.5, 0.5, 0, 1.0, 0, 0]
+==> scoreMoyen = 10794.0
+==> nbCoupsMoyen = 372.6
+==> moyenneSommeSommeNbBlocs = 16937.6
+lConstantes = [0.5, 0.5, 0, 1.0, 0, 0.5]
+==> scoreMoyen = 17858.0
+==> nbCoupsMoyen = 883.2
+==> moyenneSommeSommeNbBlocs = 24809.7
+lConstantes = [0.5, 0.5, 0, 1.0, 0, 1.0]
+==> scoreMoyen = 15220.0
+==> nbCoupsMoyen = 784.2
+==> moyenneSommeSommeNbBlocs = 24576.5
+lConstantes = [0.5, 0.5, 0, 1.0, 0.5, 0]
+==> scoreMoyen = 19168.0
+==> nbCoupsMoyen = 872.6
+==> moyenneSommeSommeNbBlocs = 26731.7
+lConstantes = [0.5, 0.5, 0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18756.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20922.7
+lConstantes = [0.5, 0.5, 0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18500.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 17172.4
+lConstantes = [0.5, 0.5, 0, 1.0, 1.0, 0]
+==> scoreMoyen = 5454.0
+==> nbCoupsMoyen = 308.6
+==> moyenneSommeSommeNbBlocs = 17411.2
+lConstantes = [0.5, 0.5, 0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 16260.0
+==> nbCoupsMoyen = 903.6
+==> moyenneSommeSommeNbBlocs = 25636.2
+lConstantes = [0.5, 0.5, 0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18032.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23796.4
+lConstantes = [0.5, 0.5, 0.5, 0, 0, 0]
+==> scoreMoyen = 6186.0
+==> nbCoupsMoyen = 266.1
+==> moyenneSommeSommeNbBlocs = 13631.8
+lConstantes = [0.5, 0.5, 0.5, 0, 0, 0.5]
+==> scoreMoyen = 19328.0
+==> nbCoupsMoyen = 996.8
+==> moyenneSommeSommeNbBlocs = 36144.6
+lConstantes = [0.5, 0.5, 0.5, 0, 0, 1.0]
+==> scoreMoyen = 16294.0
+==> nbCoupsMoyen = 835.7
+==> moyenneSommeSommeNbBlocs = 34479.7
+lConstantes = [0.5, 0.5, 0.5, 0, 0.5, 0]
+==> scoreMoyen = 4100.0
+==> nbCoupsMoyen = 245.1
+==> moyenneSommeSommeNbBlocs = 13689.3
+lConstantes = [0.5, 0.5, 0.5, 0, 0.5, 0.5]
+==> scoreMoyen = 15936.0
+==> nbCoupsMoyen = 886.2
+==> moyenneSommeSommeNbBlocs = 28829.9
+lConstantes = [0.5, 0.5, 0.5, 0, 0.5, 1.0]
+==> scoreMoyen = 15780.0
+==> nbCoupsMoyen = 872.9
+==> moyenneSommeSommeNbBlocs = 30591.3
+lConstantes = [0.5, 0.5, 0.5, 0, 1.0, 0]
+==> scoreMoyen = 1752.0
+==> nbCoupsMoyen = 125.0
+==> moyenneSommeSommeNbBlocs = 7843.4
+lConstantes = [0.5, 0.5, 0.5, 0, 1.0, 0.5]
+==> scoreMoyen = 6406.0
+==> nbCoupsMoyen = 385.4
+==> moyenneSommeSommeNbBlocs = 19183.1
+lConstantes = [0.5, 0.5, 0.5, 0, 1.0, 1.0]
+==> scoreMoyen = 6296.0
+==> nbCoupsMoyen = 372.7
+==> moyenneSommeSommeNbBlocs = 19770.9
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0, 0]
+==> scoreMoyen = 7954.0
+==> nbCoupsMoyen = 287.4
+==> moyenneSommeSommeNbBlocs = 15054.8
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0, 0.5]
+==> scoreMoyen = 16160.0
+==> nbCoupsMoyen = 833.0
+==> moyenneSommeSommeNbBlocs = 28674.2
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0, 1.0]
+==> scoreMoyen = 15138.0
+==> nbCoupsMoyen = 783.6
+==> moyenneSommeSommeNbBlocs = 24390.3
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0.5, 0]
+==> scoreMoyen = 18346.0
+==> nbCoupsMoyen = 872.6
+==> moyenneSommeSommeNbBlocs = 29061.5
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+==> scoreMoyen = 17366.0
+==> nbCoupsMoyen = 941.0
+==> moyenneSommeSommeNbBlocs = 21937.2
+lConstantes = [0.5, 0.5, 0.5, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18202.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20898.4
+lConstantes = [0.5, 0.5, 0.5, 0.5, 1.0, 0]
+==> scoreMoyen = 5702.0
+==> nbCoupsMoyen = 322.2
+==> moyenneSommeSommeNbBlocs = 15801.3
+lConstantes = [0.5, 0.5, 0.5, 0.5, 1.0, 0.5]
+==> scoreMoyen = 17320.0
+==> nbCoupsMoyen = 956.9
+==> moyenneSommeSommeNbBlocs = 33636.9
+lConstantes = [0.5, 0.5, 0.5, 0.5, 1.0, 1.0]
+==> scoreMoyen = 17836.0
+==> nbCoupsMoyen = 991.7
+==> moyenneSommeSommeNbBlocs = 26140.5
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0, 0]
+==> scoreMoyen = 12258.0
+==> nbCoupsMoyen = 391.5
+==> moyenneSommeSommeNbBlocs = 17572.3
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0, 0.5]
+==> scoreMoyen = 13962.0
+==> nbCoupsMoyen = 699.8
+==> moyenneSommeSommeNbBlocs = 21563.4
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0, 1.0]
+==> scoreMoyen = 17650.0
+==> nbCoupsMoyen = 913.7
+==> moyenneSommeSommeNbBlocs = 24724.2
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0.5, 0]
+==> scoreMoyen = 22950.0
+==> nbCoupsMoyen = 999.5
+==> moyenneSommeSommeNbBlocs = 28652.1
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18514.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 19306.3
+lConstantes = [0.5, 0.5, 0.5, 1.0, 0.5, 1.0]
+==> scoreMoyen = 18558.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 18679.0
+lConstantes = [0.5, 0.5, 0.5, 1.0, 1.0, 0]
+==> scoreMoyen = 15496.0
+==> nbCoupsMoyen = 770.7
+==> moyenneSommeSommeNbBlocs = 28349.7
+lConstantes = [0.5, 0.5, 0.5, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18340.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 22504.0
+lConstantes = [0.5, 0.5, 0.5, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18124.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20781.4
+lConstantes = [0.5, 0.5, 1.0, 0, 0, 0]
+==> scoreMoyen = 6042.0
+==> nbCoupsMoyen = 233.3
+==> moyenneSommeSommeNbBlocs = 12224.3
+lConstantes = [0.5, 0.5, 1.0, 0, 0, 0.5]
+==> scoreMoyen = 14758.0
+==> nbCoupsMoyen = 735.7
+==> moyenneSommeSommeNbBlocs = 25525.3
+lConstantes = [0.5, 0.5, 1.0, 0, 0, 1.0]
+==> scoreMoyen = 18888.0
+==> nbCoupsMoyen = 969.2
+==> moyenneSommeSommeNbBlocs = 37993.5
+lConstantes = [0.5, 0.5, 1.0, 0, 0.5, 0]
+==> scoreMoyen = 18076.0
+==> nbCoupsMoyen = 830.1
+==> moyenneSommeSommeNbBlocs = 28520.4
+lConstantes = [0.5, 0.5, 1.0, 0, 0.5, 0.5]
+==> scoreMoyen = 18566.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23847.7
+lConstantes = [0.5, 0.5, 1.0, 0, 0.5, 1.0]
+==> scoreMoyen = 18330.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23433.7
+lConstantes = [0.5, 0.5, 1.0, 0, 1.0, 0]
+==> scoreMoyen = 5468.0
+==> nbCoupsMoyen = 313.6
+==> moyenneSommeSommeNbBlocs = 15899.9
+lConstantes = [0.5, 0.5, 1.0, 0, 1.0, 0.5]
+==> scoreMoyen = 17516.0
+==> nbCoupsMoyen = 967.9
+==> moyenneSommeSommeNbBlocs = 31626.4
+lConstantes = [0.5, 0.5, 1.0, 0, 1.0, 1.0]
+==> scoreMoyen = 16768.0
+==> nbCoupsMoyen = 918.2
+==> moyenneSommeSommeNbBlocs = 31453.8
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0, 0]
+==> scoreMoyen = 14132.0
+==> nbCoupsMoyen = 462.0
+==> moyenneSommeSommeNbBlocs = 22858.5
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0, 0.5]
+==> scoreMoyen = 16088.0
+==> nbCoupsMoyen = 765.5
+==> moyenneSommeSommeNbBlocs = 23553.6
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0, 1.0]
+==> scoreMoyen = 14446.0
+==> nbCoupsMoyen = 728.7
+==> moyenneSommeSommeNbBlocs = 23882.3
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0.5, 0]
+==> scoreMoyen = 21872.0
+==> nbCoupsMoyen = 965.4
+==> moyenneSommeSommeNbBlocs = 29418.6
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0.5, 0.5]
+==> scoreMoyen = 18478.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 21197.2
+lConstantes = [0.5, 0.5, 1.0, 0.5, 0.5, 1.0]
+==> scoreMoyen = 18636.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20698.6
+lConstantes = [0.5, 0.5, 1.0, 0.5, 1.0, 0]
+==> scoreMoyen = 14368.0
+==> nbCoupsMoyen = 723.3
+==> moyenneSommeSommeNbBlocs = 29529.1
+lConstantes = [0.5, 0.5, 1.0, 0.5, 1.0, 0.5]
+==> scoreMoyen = 18400.0
+==> nbCoupsMoyen = 992.4
+==> moyenneSommeSommeNbBlocs = 28345.8
+lConstantes = [0.5, 0.5, 1.0, 0.5, 1.0, 1.0]
+==> scoreMoyen = 18218.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 22302.4
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0, 0]
+==> scoreMoyen = 11938.0
+==> nbCoupsMoyen = 338.6
+==> moyenneSommeSommeNbBlocs = 14338.4
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0, 0.5]
+==> scoreMoyen = 18606.0
+==> nbCoupsMoyen = 880.4
+==> moyenneSommeSommeNbBlocs = 27300.7
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0, 1.0]
+==> scoreMoyen = 18056.0
+==> nbCoupsMoyen = 866.5
+==> moyenneSommeSommeNbBlocs = 29434.1
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0.5, 0]
+==> scoreMoyen = 23890.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 25406.5
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0.5, 0.5]
+==> scoreMoyen = 18888.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20844.4
+lConstantes = [0.5, 0.5, 1.0, 1.0, 0.5, 1.0]
+==> scoreMoyen = 17392.0
+==> nbCoupsMoyen = 950.2
+==> moyenneSommeSommeNbBlocs = 18301.9
+lConstantes = [0.5, 0.5, 1.0, 1.0, 1.0, 0]
+==> scoreMoyen = 18312.0
+==> nbCoupsMoyen = 854.5
+==> moyenneSommeSommeNbBlocs = 24038.5
+lConstantes = [0.5, 0.5, 1.0, 1.0, 1.0, 0.5]
+==> scoreMoyen = 18476.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 23096.2
+lConstantes = [0.5, 0.5, 1.0, 1.0, 1.0, 1.0]
+==> scoreMoyen = 18172.0
+==> nbCoupsMoyen = 1000.0
+==> moyenneSommeSommeNbBlocs = 20462.8
+lConstantes = [0.5, 1.0, 0, 0, 0, 0]
+==> scoreMoyen = 266.0
+==> nbCoupsMoyen = 42.3
+==> moyenneSommeSommeNbBlocs = 2388.4
+lConstantes = [0.5, 1.0, 0, 0, 0, 0.5]
+==> scoreMoyen = 676.0
+==> nbCoupsMoyen = 64.7
+==> moyenneSommeSommeNbBlocs = 3614.6
+lConstantes = [0.5, 1.0, 0, 0, 0, 1.0]
+==> scoreMoyen = 902.0
+==> nbCoupsMoyen = 78.0
+==> moyenneSommeSommeNbBlocs = 4307.2
+lConstantes = [0.5, 1.0, 0, 0, 0.5, 0]
+==> scoreMoyen = 80.0
+==> nbCoupsMoyen = 31.7
+==> moyenneSommeSommeNbBlocs = 1790.9
+lConstantes = [0.5, 1.0, 0, 0, 0.5, 0.5]
+==> scoreMoyen = 778.0
+==> nbCoupsMoyen = 69.8
+==> moyenneSommeSommeNbBlocs = 3568.4
+lConstantes = [0.5, 1.0, 0, 0, 0.5, 1.0]
+==> scoreMoyen = 564.0
+==> nbCoupsMoyen = 58.7
+==> moyenneSommeSommeNbBlocs = 3121.2
+lConstantes = [0.5, 1.0, 0, 0, 1.0, 0]
+==> scoreMoyen = 112.0
+==> nbCoupsMoyen = 33.3
+==> moyenneSommeSommeNbBlocs = 1907.5
+lConstantes = [0.5, 1.0, 0, 0, 1.0, 0.5]
+==> scoreMoyen = 510.0
+==> nbCoupsMoyen = 55.0
+==> moyenneSommeSommeNbBlocs = 3111.3
+lConstantes = [0.5, 1.0, 0, 0, 1.0, 1.0]
+==> scoreMoyen = 440.0
+==> nbCoupsMoyen = 51.4
+==> moyenneSommeSommeNbBlocs = 3064.0
+lConstantes = [0.5, 1.0, 0, 0.5, 0, 0]
+==> scoreMoyen = 5000.0
+==> nbCoupsMoyen = 210.0
+==> moyenneSommeSommeNbBlocs = 11089.9
+lConstantes = [0.5, 1.0, 0, 0.5, 0, 0.5]
+==> scoreMoyen = 17320.0
+==> nbCoupsMoyen = 870.6
+==> moyenneSommeSommeNbBlocs = 29709.4
+lConstantes = [0.5, 1.0, 0, 0.5, 0, 1.0]
+==> scoreMoyen = 13134.0
+==> nbCoupsMoyen = 683.7
+==> moyenneSommeSommeNbBlocs = 22973.8
+lConstantes = [0.5, 1.0, 0, 0.5, 0.5, 0]
+==> scoreMoyen = 8070.0
+==> nbCoupsMoyen = 438.5
+==> moyenneSommeSommeNbBlocs = 21148.1
