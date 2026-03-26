@@ -13,7 +13,7 @@ class Algorithme(object):
         self.nbCoupsMax = 3
         #Calcul score
         self.jeu = jeu
-        self.alpha = 0 #hauteur max grille
+        self.alpha = 1 #hauteur max grille
         self.beta = 0 #hauteur max piece
         self.gamma = 0. #somme hauteurs
         self.delta = 1 #nbTrous
@@ -235,7 +235,7 @@ class Algorithme(object):
         nbColonnes = len(grille[0])
         nbLignesASupprimer = 0
         for y in range(nbLignes):
-            if all([grille[y][x] is not None for x in range(nbColonnes)]):
+            if all(grille[y][x] is not None for x in range(nbColonnes)):
                 nbLignesASupprimer += 1
         return nbLignesASupprimer
 

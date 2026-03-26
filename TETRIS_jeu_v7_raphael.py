@@ -20,6 +20,7 @@ class Jeu(object):
         self.nbCoupsMax = None
         self.changer_game_nb_coups_max(gameInfini)
         self.texteNbCoups = None
+        self.nbBlocs = 0
         self.sommeNbBlocs = 0
         self.calcul_sommeNbBlocs = False
         self.texteSommeNbBlocs = None
@@ -156,6 +157,7 @@ class Jeu(object):
         self.score = 0
         self.texteScore = None
         self.nbCoups = 0
+        self.nbBlocs = 0
         self.sommeNbBlocs = 0
         #algo
         self.modeAlgo = modeAlgo
@@ -174,24 +176,23 @@ class Jeu(object):
         self.generer_piece()
         self.changer_score(gain=0)
         self.changer_nb_coups(deltaCoups=0)
-        self.calculer_sommeNbBlocs(self.grille)
+        self.calculer_sommeNbBlocs(ajout=0)
         self.algo.changer_nb_coups(ajout=0)
 
     def jouer(self, modeAlgo=False):
         self.reset(modeAlgo=modeAlgo)
         self.generer_piece()
         while not self.finJeu:
-            if self.modeAlgo:
-                self.algo.boucle_jeu()
-            elif not self.modePerf :
+            self.algo.boucle_jeu()
+            if not self.modePerf :
                 self.piece.bouger()
                 self.tester_clavier()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.finJeu = True
-                    self.quitterProgramme = True
-                if not self.modePerf and event.type == pygame.KEYDOWN:
-                    self.tester_clavier_appuie(event)
+                for event in pygame.event.get(): #ATTENTION à supprimer quand bot si on veut max perf
+                    if event.type == pygame.QUIT:
+                        self.finJeu = True
+                        self.quitterProgramme = True
+                    if not self.modePerf and event.type == pygame.KEYDOWN:
+                        self.tester_clavier_appuie(event)
             self.afficher()
 
     def afficher(self):
@@ -205,11 +206,14 @@ class Jeu(object):
         self.afficher_grille(self.grilleHold, self.tailleCase, self.xDebutCases+-5*self.tailleCase, self.yDebutCases, piece=self.holdPiece, ombre=False, coin=True)
         self.algo.desafficher_toutes_positions()
 
-        self.fenetre.blit(self.texteScore, (0,200))
-        self.fenetre.blit(self.texteNbCoups, (0,225))
-        if self.calcul_sommeNbBlocs:
-            self.fenetre.blit(self.texteSommeNbBlocs, (0, 250))
-        self.fenetre.blit(self.texteNbCoupsAlgo, (0, 275))
+        xTexte = 10
+        yTexte = 5
+        for texte in (self.texteScore, self.texteNbCoups, self.texteSommeNbBlocs, self.texteNbCoupsAlgo):
+            if texte == self.texteSommeNbBlocs and not self.calcul_sommeNbBlocs:
+                continue
+            self.fenetre.blit(texte, (xTexte, yTexte))
+            w,h = texte.get_size()
+            xTexte += (w + 30)
 
         pygame.display.update()
 
@@ -223,12 +227,11 @@ class Jeu(object):
         pygame.draw.rect(self.fenetre, (255*0.9, 255*0.9, 255*0.9), (xDebut, yDebut, tailleCase*nbColonnes, tailleCase*nbLignes))
         for y in range(nbLignes):
             for x in range(nbColonnes):
-               pygame.draw.rect(self.fenetre, (255,255,255), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-self.bordure)))
-        for y in range(nbLignes):
-            for x in range(nbColonnes):
                 if grille[y][x] is not None:
                     r,g,b = grille[y][x]
                     pygame.draw.rect(self.fenetre, (r,g,b), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-2*self.bordure)))
+                else :
+                    pygame.draw.rect(self.fenetre, (255,255,255), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-self.bordure)))
         if piece is not None:
             if ombre :
                 self.enlever_de_grille(grille, piece.x, piece.yOmbre, piece.orientation, piece.type, (220,200,200), coin)
@@ -250,18 +253,12 @@ class Jeu(object):
     def changer_somme_nb_blocs(self, actif):
         self.calcul_sommeNbBlocs = actif
 
-    def calculer_sommeNbBlocs(self, grille):
+    def calculer_sommeNbBlocs(self, ajout):
         if not self.calcul_sommeNbBlocs:
-            return 0
-        nbBlocs = 0
-        nbLignes = len(grille)
-        nbColonnes = len(grille[0])
-        for x in range(nbColonnes):
-            for y in range(nbLignes):
-                nbBlocs += 1 if grille[y][x] is not None else 0
-        self.sommeNbBlocs += nbBlocs
-        self.texteSommeNbBlocs = self.police.render(f"Somme nbBlocs : {self.sommeNbBlocs}", False, (0,0,0))
-        return nbBlocs
+            return
+        self.nbBlocs += ajout
+        self.sommeNbBlocs += self.nbBlocs
+        self.texteSommeNbBlocs = self.police.render(f"Somme Nb Blocs : {self.sommeNbBlocs}", False, (0,0,0))
 
     def limiter_grille(self):
         for x in range(self.nbColonnes):
@@ -332,14 +329,20 @@ class Jeu(object):
     def tester_lignes(self, grille):
         nbLignes = len(grille)
         nbColonnes = len(grille[0])
-        nbLignesASupprimer = 0
-        for y in range(nbLignes):
-            if all([grille[y][x] is not None for x in range(nbColonnes)]):
-                self.supprimer_ligne(grille, y)
-                nbLignesASupprimer += 1
-        self.changer_score(gain=self.dicoScores[nbLignesASupprimer])
-
-        """Faire un effaçage efficace avec un seul parcours et un genre de dp"""
+        dp = [0]*(nbLignes+1) #nbLignes à supprimer <= y
+        for y in range(nbLignes-1, -1, -1):
+            dp[y] = dp[y+1]
+            if all(grille[y][x] is not None for x in range(nbColonnes)):
+                dp[y] += 1
+        nbLignesASupprimer = dp[0]
+        if nbLignesASupprimer > 0:
+            for y in range(nbLignes-1, -1, -1):
+                if y-dp[y] >= 0:
+                    grille[y] = grille[y-dp[y]].copy()
+                else :
+                    grille[y] = [None]*nbColonnes
+            self.changer_score(gain=self.dicoScores[nbLignesASupprimer])
+            self.calculer_sommeNbBlocs(ajout=-nbColonnes*nbLignesASupprimer)
 
     def supprimer_ligne(self, grille, Y):
         for y in range(Y, 0, -1):
