@@ -29,12 +29,6 @@ class Jeu(object):
         self.algo = Algorithme(jeu=self)
         self.modeAlgo = False
         self.texteNbCoupsAlgo = None
-        #Positions prédites
-        self.visuelPositions = False
-        self.lPositionsPieces = []
-        self.iPosition = 0
-        self.dtPositionsInit = 100 #ms
-        self.tPositionsAvant = pygame.time.get_ticks()
         #Graphiques
         self.fenetre = fenetre
         self.police = police
@@ -165,12 +159,7 @@ class Jeu(object):
         self.sommeNbBlocs = 0
         #algo
         self.modeAlgo = modeAlgo
-        #Positions prédites
-        self.visuelPositions = False
-        self.lPositionsPieces = []
-        self.iPosition = 0
-        self.tPositionsAvant = pygame.time.get_ticks()
-        #Graphiques
+        self.algo.reset()
         #Grille
         self.grille = [[None]*self.nbColonnes for _ in range(self.nbLignes)]
         self.grilleNext = [[None]*4 for _ in range(4)]
@@ -210,11 +199,11 @@ class Jeu(object):
             return
         self.fenetre.fill((255,255,155,255))
 
-        self.afficher_toutes_positions()
+        self.algo.afficher_toutes_positions()
         self.afficher_grille(self.grille, self.tailleCase, self.xDebutCases, self.yDebutCases, piece=self.piece, ombre=True, coin=False)
         self.afficher_grille(self.grilleNext, self.tailleCase, self.xDebutCases+(self.nbColonnes+1)*self.tailleCase, self.yDebutCases, piece=self.nextPiece, ombre=False, coin=True)
         self.afficher_grille(self.grilleHold, self.tailleCase, self.xDebutCases+-5*self.tailleCase, self.yDebutCases, piece=self.holdPiece, ombre=False, coin=True)
-        self.desafficher_toutes_positions()
+        self.algo.desafficher_toutes_positions()
 
         self.fenetre.blit(self.texteScore, (0,200))
         self.fenetre.blit(self.texteNbCoups, (0,225))
@@ -244,34 +233,6 @@ class Jeu(object):
             if ombre :
                 self.enlever_de_grille(grille, piece.x, piece.yOmbre, piece.orientation, piece.type, (220,200,200), coin)
             self.enlever_de_grille(grille, piece.x, piece.y, piece.orientation, piece.type, piece.couleur, coin)
-
-    def changer_visuel_positions(self):
-        if self.visuelPositions:
-            self.piece.bouge = True
-            self.piece.tempsAvant = pygame.time.get_ticks()
-        else :
-            self.piece.bouge = False
-            self.iPosition = 0
-            self.tPositionsAvant = pygame.time.get_ticks()
-        self.visuelPositions = not self.visuelPositions
-
-    def afficher_toutes_positions(self):
-        if not self.visuelPositions:
-            return
-        if self.iPosition >= len(self.lPositionsPieces):
-            self.changer_visuel_positions()
-            return
-        x,y,o,t = self.lPositionsPieces[self.iPosition]
-        self.mettre_dans_grille(self.grille, x, y, o, t, (0,0,0), coin=False)
-
-    def desafficher_toutes_positions(self):
-        if not self.visuelPositions:
-            return
-        x,y,o,t = self.lPositionsPieces[self.iPosition]
-        self.enlever_de_grille(self.grille, x, y, o, t, self.piece.couleur, coin=False)
-        if pygame.time.get_ticks() >= self.tPositionsAvant + self.dtPositionsInit:
-            self.tPositionsAvant = pygame.time.get_ticks()
-            self.iPosition += 1
 
     def changer_score(self, gain):
         self.score += gain
@@ -420,4 +381,3 @@ class Jeu(object):
                         grille[y][x] = None
                     elif (0 <= X+x < nbColonnes) and (0 <= Y+y < nbLignes):
                         grille[Y+y][X+x] = None
-

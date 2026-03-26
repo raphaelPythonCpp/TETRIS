@@ -13,16 +13,26 @@ class Algorithme(object):
         self.nbCoupsMax = 3
         #Calcul score
         self.jeu = jeu
-        self.alpha = 0.5 #hauteur max grille
+        self.alpha = 0 #hauteur max grille
         self.beta = 0 #hauteur max piece
         self.gamma = 0. #somme hauteurs
         self.delta = 1 #nbTrous
-        self.epsilon = 0.5 #irregularite
-        self.zeta = 0.5 #lignes
+        self.epsilon = 1 #irregularite
+        self.zeta = 1 #lignes
         self.lConstantes = [self.alpha, self.beta, self.gamma, self.delta, self.epsilon, self.zeta]
         self.nbConstantes = len(self.lConstantes)
+        #Positions prédites
+        self.lPositionsPieces = []
+        self.visuelPositions = False
+        self.iPosition = 0
+        self.dtPositionsInit = 100 #ms
+        self.tPositionsAvant = pygame.time.get_ticks()
     def reset(self):
-        pass
+        #Positions prédites
+        self.visuelPositions = False
+        self.lPositionsPieces = []
+        self.iPosition = 0
+        self.tPositionsAvant = pygame.time.get_ticks()
 
     def changer_mode(self):
         if not self.jeu.modeAlgo:
@@ -31,16 +41,16 @@ class Algorithme(object):
 
     def calculer_toutes_positions(self):
         if self.nbCoups == 1:
-            self.jeu.lPositionsPieces = self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece)
+            self.lPositionsPieces = self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece)
         elif self.nbCoups == 2 :
             self.jeu.nextPiece.reset()
-            self.jeu.lPositionsPieces = self.calculer_toutes_positions_2_coups(self.jeu.grille, self.jeu.piece, self.jeu.nextPiece)
+            self.lPositionsPieces = self.calculer_toutes_positions_2_coups(self.jeu.grille, self.jeu.piece, self.jeu.nextPiece)
         elif self.nbCoups == 3:
             if self.jeu.holdPiece is None:
                 self.jeu.mettre_piece_hold()
             self.jeu.holdPiece.reset()
-            self.jeu.lPositionsPieces = [self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece), self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.holdPiece)]
-        self.jeu.changer_visuel_positions()
+            self.lPositionsPieces = [self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece), self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.holdPiece)]
+        self.changer_visuel_positions()
 
     def calculer_toutes_positions_2_coups(self, grille, piece1, piece2):
         #BFS sur les 2 pièces puis merge des solutions sans overlap de p1 et p2
@@ -101,7 +111,7 @@ class Algorithme(object):
             self.jeu.enlever_de_grille(grille, x1, y1, o1, t1, None, False)
         lPositionsFinales.sort()
         return lPositionsFinales
-    
+
     def calculer_toutes_positions_1_coup(self, grille, piece):
         #BFS sur la piece
         nbLignes = len(grille)
@@ -248,7 +258,7 @@ class Algorithme(object):
                 lScoresTotal[iP][i] = score1+score2
                 lMax[i] = max(lMax[i], score1+score2)
                 lMin[i] = min(lMin[i], score1+score2)
-                
+
         scoreMax = -float("inf")
         meilleurePosition = (None,None,None,None) #(x,y,o,t)
         for iP,position in enumerate(lPositions):
@@ -264,7 +274,7 @@ class Algorithme(object):
                 scoreMax = score
                 meilleurePosition = position
         return meilleurePosition, scoreMax
-    
+
     def calculer_meilleure_position_1_coup(self, grille, lPositions):
         lScores = [None]*len(lPositions)
         lMax = [-float("inf") for _ in range(self.nbConstantes)]
@@ -278,7 +288,7 @@ class Algorithme(object):
                 lScores[iP][i] = score
                 lMax[i] = max(lMax[i], score)
                 lMin[i] = min(lMin[i], score)
-                
+
         scoreMax = -float("inf")
         meilleurePosition = (None,None,None,None) #(x,y,o,t)
         for iP,position in enumerate(lPositions):
@@ -307,18 +317,18 @@ class Algorithme(object):
 
     def appliquer_position(self):
         if self.nbCoups == 1:
-            self.jeu.lPositionsPieces = self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece)
-            self.jouer_1_coup(self.jeu.grille, self.jeu.lPositionsPieces, self.jeu.piece)
+            self.lPositionsPieces = self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece)
+            self.jouer_1_coup(self.jeu.grille, self.lPositionsPieces, self.jeu.piece)
         elif self.nbCoups == 2 :
             self.jeu.nextPiece.reset()
-            self.jeu.lPositionsPieces = self.calculer_toutes_positions_2_coups(self.jeu.grille, self.jeu.piece, self.jeu.nextPiece)
-            self.jouer_2_coups(self.jeu.grille, self.jeu.lPositionsPieces, self.jeu.piece, self.jeu.nextPiece)
+            self.lPositionsPieces = self.calculer_toutes_positions_2_coups(self.jeu.grille, self.jeu.piece, self.jeu.nextPiece)
+            self.jouer_2_coups(self.jeu.grille, self.lPositionsPieces, self.jeu.piece, self.jeu.nextPiece)
         elif self.nbCoups == 3 :
             if self.jeu.holdPiece is None:
                 self.jeu.mettre_piece_hold()
             self.jeu.holdPiece.reset()
-            self.jeu.lPositionsPieces = [self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece), self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.holdPiece)]
-            self.joueur_3_coups(self.jeu.grille, self.jeu.lPositionsPieces, self.jeu.piece, self.jeu.holdPiece)
+            self.lPositionsPieces = [self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.piece), self.calculer_toutes_positions_1_coup(self.jeu.grille, self.jeu.holdPiece)]
+            self.joueur_3_coups(self.jeu.grille, self.lPositionsPieces, self.jeu.piece, self.jeu.holdPiece)
 
     def appliquer_position_2_coups(self, grille, piece1, position1, piece2, position2):
         #Piece 1
@@ -389,8 +399,61 @@ class Algorithme(object):
         self.nbCoups = (self.nbCoups-1+ajout) % self.nbCoupsMax + 1
         self.jeu.texteNbCoupsAlgo = self.jeu.police.render(f"NbCoups Algo : {self.nbCoups}", False, (0,0,0))
 
-    def afficher(self):
-        print(self.score)
+    def afficher_toutes_positions(self):
+        if not self.visuelPositions:
+            return
+        if self.nbCoups == 1:
+            if self.iPosition >= len(self.lPositionsPieces):
+                self.changer_visuel_positions()
+                return
+            x,y,o,t = self.lPositionsPieces[self.iPosition]
+            self.jeu.mettre_dans_grille(self.jeu.grille, x, y, o, t, (0,0,0), coin=False)
+        elif self.nbCoups == 2:
+            if self.iPosition >= len(self.lPositionsPieces):
+                self.changer_visuel_positions()
+                return
+            x1,y1,o1,t1,x2,y2,o2,t2 = self.lPositionsPieces[self.iPosition]
+            self.jeu.mettre_dans_grille(self.jeu.grille, x1, y1, o1, t1, (0,0,0), coin=False)
+            self.jeu.mettre_dans_grille(self.jeu.grille, x2, y2, o2, t2, (0,0,0), coin=False)
+        elif self.nbCoups == 3:
+            if self.iPosition >= len(self.lPositionsPieces[0])+len(self.lPositionsPieces[1]):
+                self.changer_visuel_positions()
+                return
+            elif self.iPosition < len(self.lPositionsPieces[0]):
+                x,y,o,t = self.lPositionsPieces[0][self.iPosition]
+            else :
+                x,y,o,t = self.lPositionsPieces[1][self.iPosition-len(self.lPositionsPieces[0])]
+            self.jeu.mettre_dans_grille(self.jeu.grille, x, y, o, t, (0,0,0), coin=False)
+
+    def desafficher_toutes_positions(self):
+        if not self.visuelPositions:
+            return
+        if self.nbCoups == 1:
+            x,y,o,t = self.lPositionsPieces[self.iPosition]
+            self.jeu.enlever_de_grille(self.jeu.grille, x, y, o, t, (0,0,0), coin=False)
+        elif self.nbCoups == 2:
+            x1,y1,o1,t1,x2,y2,o2,t2 = self.lPositionsPieces[self.iPosition]
+            self.jeu.enlever_de_grille(self.jeu.grille, x1, y1, o1, t1, (0,0,0), coin=False)
+            self.jeu.enlever_de_grille(self.jeu.grille, x2, y2, o2, t2, (0,0,0), coin=False)
+        elif self.nbCoups == 3:
+            if self.iPosition < len(self.lPositionsPieces[0]):
+                x,y,o,t = self.lPositionsPieces[0][self.iPosition]
+            else :
+                x,y,o,t = self.lPositionsPieces[1][self.iPosition-len(self.lPositionsPieces[0])]
+            self.jeu.enlever_de_grille(self.jeu.grille, x, y, o, t, (0,0,0), coin=False)
+        if pygame.time.get_ticks() >= self.tPositionsAvant + self.dtPositionsInit:
+            self.tPositionsAvant = pygame.time.get_ticks()
+            self.iPosition += 1
+
+    def changer_visuel_positions(self):
+        if self.visuelPositions:
+            self.jeu.piece.bouge = True
+            self.jeu.piece.tempsAvant = pygame.time.get_ticks()
+        else :
+            self.jeu.piece.bouge = False
+            self.iPosition = 0
+            self.tPositionsAvant = pygame.time.get_ticks()
+        self.visuelPositions = not self.visuelPositions
 
 
 

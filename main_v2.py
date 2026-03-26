@@ -6,15 +6,17 @@ pygame.init()
 
 wFenetre, hFenetre = 600, 600
 fenetre = pygame.display.set_mode((wFenetre, hFenetre))
-pygame.display.set_caption("TETRIS v6 Raphaël")
+pygame.display.set_caption("TETRIS v7 Raphaël")
+nbColonnes, nbLignes = 5, 10
+tailleCase = min(0.3*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
 temps = pygame.time.Clock()
 police = pygame.font.SysFont("Arial", 15, bold=True, italic=False)
 
 game_infini = True
-env = Jeu(fenetre=fenetre, police=police, tailleCase=30, nbColonnes=9, nbLignes=18, visuel=True)
+env = Jeu(fenetre=fenetre, police=police, tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes, visuel=True)
 
-trouver_meilleurs_constantes = False
+trouver_meilleurs_constantes = Fbalse
 if trouver_meilleurs_constantes:
     env.visuel = False
     env.changer_game_nb_coups_max(False)
@@ -22,7 +24,7 @@ if trouver_meilleurs_constantes:
     nbParties = 10
     lConstantes = [0] * env.algo.nbConstantes
     #lConstantes = [0, 0, 0, 0.5, 0.5, 0.5]
-    pasConstantes = 0.5
+    pasConstantes = 1
     nbCombinaisons = floor(1/pasConstantes + 1)**len(lConstantes)
     iCombinaison = 0
     dicoRes = {}
@@ -47,7 +49,7 @@ if trouver_meilleurs_constantes:
         print(f"==> scoreMoyen = {moyenneScores}")
         print(f"==> nbCoupsMoyen = {moyenneNbCoups}")
         print(f"==> moyenneSommeSommeNbBlocs = {moyenneSommeSommeNbBlocs}")
-        dicoRes[tuple(lConstantes)] = moyenneScores
+        dicoRes[tuple(lConstantes)] = (moyenneScores, moyenneNbCoups, moyenneSommeSommeNbBlocs)
         #Changement lConstantes
         iC = len(lConstantes)-1
         lConstantes[iC] += pasConstantes
