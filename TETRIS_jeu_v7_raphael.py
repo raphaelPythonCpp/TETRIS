@@ -9,6 +9,7 @@ class Jeu(object):
     def __init__(self, fenetre, police, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, gameInfini=False):
         self.quitterProgramme = False
         self.finJeu = False
+        self.couleurTextes = (150,150,255)
         self.score = 0
         self.texteScore = None
         self.dicoScores = {0 : 0,
@@ -36,7 +37,7 @@ class Jeu(object):
         self.visuel = visuel
         self.wFenetre, self.hFenetre = pygame.display.get_surface().get_size()
         self.tailleCase = tailleCase
-        self.bordure = 0.05
+        self.bordure = 0.03
         #Grille
         self.nbColonnes, self.nbLignes = nbColonnes, nbLignes
         self.xDebutCases, self.yDebutCases = self.wFenetre/2 - nbColonnes/2*tailleCase, self.hFenetre/2 - nbLignes/2*tailleCase
@@ -74,18 +75,14 @@ class Jeu(object):
                                     ("T", 3) : ((0,1,0),
                                                 (1,1,0),
                                                 (0,1,0)),
-                                    ("O", 0) : ((0,1,1),
-                                                (0,1,1),
-                                                (0,0,0)),
-                                    ("O", 1) : ((0,1,1),
-                                                (0,1,1),
-                                                (0,0,0)),
-                                    ("O", 2) : ((0,1,1),
-                                                (0,1,1),
-                                                (0,0,0)),
-                                    ("O", 3) : ((0,1,1),
-                                                (0,1,1),
-                                                (0,0,0)),
+                                    ("O", 0) : ((1,1),
+                                                (1,1)),
+                                    ("O", 1) : ((1,1),
+                                                (1,1)),
+                                    ("O", 2) : ((1,1),
+                                                (1,1)),
+                                    ("O", 3) : ((1,1),
+                                                (1,1)),
                                     ("L", 0) : ((0,0,1),
                                                 (1,1,1),
                                                 (0,0,0)),
@@ -198,10 +195,10 @@ class Jeu(object):
     def afficher(self):
         if not self.visuel :
             return
-        self.fenetre.fill((255,255,155,255))
+        self.fenetre.fill((0,0,0,0))
 
         self.algo.afficher_toutes_positions()
-        self.afficher_grille(self.grille, self.tailleCase, self.xDebutCases, self.yDebutCases, piece=self.piece, ombre=True, coin=False)
+        self.afficher_grille(self.grille, self.tailleCase, self.xDebutCases, self.yDebutCases, piece=self.piece, ombre=False, coin=False)
         self.afficher_grille(self.grilleNext, self.tailleCase, self.xDebutCases+(self.nbColonnes+1)*self.tailleCase, self.yDebutCases, piece=self.nextPiece, ombre=False, coin=True)
         self.afficher_grille(self.grilleHold, self.tailleCase, self.xDebutCases+-5*self.tailleCase, self.yDebutCases, piece=self.holdPiece, ombre=False, coin=True)
         self.algo.desafficher_toutes_positions()
@@ -224,7 +221,7 @@ class Jeu(object):
             if ombre :
                 self.mettre_dans_grille(grille, piece.x, piece.yOmbre, piece.orientation, piece.type, (220,200,200), coin)
             self.mettre_dans_grille(grille, piece.x, piece.y, piece.orientation, piece.type, piece.couleur, coin)
-        pygame.draw.rect(self.fenetre, (255*0.9, 255*0.9, 255*0.9), (xDebut, yDebut, tailleCase*nbColonnes, tailleCase*nbLignes))
+        pygame.draw.rect(self.fenetre, (240, 240, 240), (xDebut, yDebut, tailleCase*nbColonnes, tailleCase*nbLignes))
         for y in range(nbLignes):
             for x in range(nbColonnes):
                 if grille[y][x] is not None:
@@ -239,11 +236,11 @@ class Jeu(object):
 
     def changer_score(self, gain):
         self.score += gain
-        self.texteScore = self.police.render(f"Score : {self.score}", False, (0,0,0))
+        self.texteScore = self.police.render(f"Score : {self.score}", False, self.couleurTextes)
 
     def changer_nb_coups(self, deltaCoups):
         self.nbCoups += deltaCoups
-        self.texteNbCoups = self.police.render(f"Nb Coups : {self.nbCoups}", False, (0,0,0))
+        self.texteNbCoups = self.police.render(f"Nb Coups : {self.nbCoups}", False, self.couleurTextes)
         if self.nbCoups >= self.nbCoupsMax :
             self.finJeu = True
 
@@ -258,7 +255,7 @@ class Jeu(object):
             return
         self.nbBlocs += ajout
         self.sommeNbBlocs += self.nbBlocs
-        self.texteSommeNbBlocs = self.police.render(f"Somme Nb Blocs : {self.sommeNbBlocs}", False, (0,0,0))
+        self.texteSommeNbBlocs = self.police.render(f"Somme Nb Blocs : {self.sommeNbBlocs}", False, self.couleurTextes)
 
     def limiter_grille(self):
         for x in range(self.nbColonnes):
@@ -326,7 +323,7 @@ class Jeu(object):
         elif event.key == pygame.K_c : #nbCoups algo
             self.algo.changer_nb_coups(ajout=1)
 
-    def tester_lignes(self, grille):
+    def tester_lignes(self, grille, reel=False):
         nbLignes = len(grille)
         nbColonnes = len(grille[0])
         dp = [0]*(nbLignes+1) #nbLignes à supprimer <= y
@@ -342,7 +339,8 @@ class Jeu(object):
                 else :
                     grille[y] = [None]*nbColonnes
             self.changer_score(gain=self.dicoScores[nbLignesASupprimer])
-            self.calculer_sommeNbBlocs(ajout=-nbColonnes*nbLignesASupprimer)
+            if reel :
+                self.calculer_sommeNbBlocs(ajout=-nbColonnes*nbLignesASupprimer)
 
     def supprimer_ligne(self, grille, Y):
         for y in range(Y, 0, -1):

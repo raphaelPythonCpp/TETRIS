@@ -4,10 +4,10 @@ from math import floor
 
 pygame.init()
 
-wFenetre, hFenetre = 600, 600
+wFenetre, hFenetre = 800, 600
 fenetre = pygame.display.set_mode((wFenetre, hFenetre))
 pygame.display.set_caption("TETRIS v7 Raphaël")
-nbColonnes, nbLignes = 10, 10
+nbColonnes, nbLignes = 7, 15
 tailleCase = min(0.3*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
 temps = pygame.time.Clock()
@@ -68,7 +68,7 @@ else :
     env.changer_somme_nb_blocs(True)
     nbParties = 10
     for partie in range(1,nbParties+1):
-        env.jouer(modeAlgo=True)
+        env.jouer(modeAlgo=False)
         print(f"Partie {partie} : Score {env.score} || Nb Coups : {env.nbCoups}")
         if env.quitterProgramme :
             break

@@ -58,9 +58,9 @@ class Algorithme(object):
         nbColonnes = len(grille[0])
 
         #Partie1 : Piece normale
-        grillePositions = [[[False,False,False,False] for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
+        grillePositions = [[0b0000 for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
         xInit1, yInit1, oInit1, tInit1 = piece1.x, piece1.y, piece1.orientation, piece1.type
-        grillePositions[yInit1][xInit1+2][oInit1] = True
+        grillePositions[yInit1][xInit1+2] |= (1 << oInit1)
         file = deque([(xInit1+2, yInit1, oInit1)])
         while file:
             x,y,o = file.popleft()
@@ -68,22 +68,22 @@ class Algorithme(object):
                 x2 = x+dx
                 y2 = y+dy
                 o2 = (o+do)%4
-                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit1) and not grillePositions[y2][x2][o2]:
-                    grillePositions[y2][x2][o2] = True
+                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit1) and not ((grillePositions[y2][x2] >> o2) & 1):
+                    grillePositions[y2][x2] |= (1 << o2)
                     file.append((x2,y2,o2))
         lPositions1 = []
         for y in range(nbLignes):
             for x in range(nbColonnes+4):
                 for o in range(4):
-                    if grillePositions[y][x][o]:
+                    if (grillePositions[y][x] >> o) & 1:
                         if self.jeu.tester_chevauchement(grille, x-2, y+1, o, tInit1):
                             lPositions1.append((x-2,y,o,tInit1))
 
         #Partie2 : Piece suiviante
         lPositions2 = []
-        grillePositions = [[[False,False,False,False] for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
+        grillePositions = [[0b0000 for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
         xInit2, yInit2, oInit2, tInit2 = piece2.x, piece2.y, piece2.orientation, piece2.type
-        grillePositions[yInit2][xInit2+2][oInit2] = True
+        grillePositions[yInit2][xInit2+2] |= (1 << oInit2)
         file = deque([(xInit2+2, yInit2, oInit2)])
         while file:
             x,y,o = file.popleft()
@@ -91,13 +91,13 @@ class Algorithme(object):
                 x2 = x+dx
                 y2 = y+dy
                 o2 = (o+do)%4
-                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit2) and not grillePositions[y2][x2][o2]:
-                    grillePositions[y2][x2][o2] = True
+                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit2) and not ((grillePositions[y2][x2] >> o2) & 1):
+                    grillePositions[y2][x2]|= (1 << o2)
                     file.append((x2,y2,o2))
         for y in range(nbLignes):
             for x in range(nbColonnes+4):
                 for o in range(4):
-                    if grillePositions[y][x][o]:
+                    if (grillePositions[y][x] >> o) & 1:
                         if self.jeu.tester_chevauchement(grille, x-2, y+1, o, tInit2):
                             lPositions2.append((x-2,y,o,tInit2))
 
@@ -116,9 +116,9 @@ class Algorithme(object):
         #BFS sur la piece
         nbLignes = len(grille)
         nbColonnes = len(grille[0])
-        grillePositions = [[[False,False,False,False] for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
+        grillePositions = [[0b0000 for x in range(nbColonnes+4)] for y in range(nbLignes)]  #[Est, Nord, Ouest, Sud] | +2 colonnes à gauche | + 2 colonnes à droite
         xInit, yInit, oInit, tInit = piece.x, piece.y, piece.orientation, piece.type
-        grillePositions[yInit][xInit+2][oInit] = True
+        grillePositions[yInit][xInit+2] |= (1 << oInit)
         file = deque([(xInit+2, yInit, oInit)])
         while file:
             x,y,o = file.popleft()
@@ -126,14 +126,14 @@ class Algorithme(object):
                 x2 = x+dx
                 y2 = y+dy
                 o2 = (o+do)%4
-                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit) and not grillePositions[y2][x2][o2]:
-                    grillePositions[y2][x2][o2] = True
+                if not self.jeu.tester_chevauchement(grille, x2-2, y2, o2, tInit) and not ((grillePositions[y2][x2] >> o2) & 1):
+                    grillePositions[y2][x2] |= (1 << o2)
                     file.append((x2,y2,o2))
         lPositions = []
         for y in range(nbLignes):
             for x in range(nbColonnes+4):
                 for o in range(4):
-                    if grillePositions[y][x][o]:
+                    if (grillePositions[y][x] >> o) & 1:
                         if self.jeu.tester_chevauchement(grille, x-2, y+1, o, tInit):
                             lPositions.append((x-2,y,o,tInit))
         #keep que les solutions valides
@@ -338,7 +338,7 @@ class Algorithme(object):
         piece1.orientation = o1
         piece1.type = t1
         piece1.matrice = self.jeu.dicoMatricesPieces[(t1,o1)]
-        piece1.fixer()
+        piece1.fixer(tester_lignes=False)
         #Piece 2
         x2,y2,o2,t2 = position2
         piece2.x = x2
@@ -397,7 +397,7 @@ class Algorithme(object):
 
     def changer_nb_coups(self, ajout):
         self.nbCoups = (self.nbCoups-1+ajout) % self.nbCoupsMax + 1
-        self.jeu.texteNbCoupsAlgo = self.jeu.police.render(f"NbCoups Algo : {self.nbCoups}", False, (0,0,0))
+        self.jeu.texteNbCoupsAlgo = self.jeu.police.render(f"NbCoups Algo : {self.nbCoups}", False, self.jeu.couleurTextes)
 
     def afficher_toutes_positions(self):
         if not self.visuelPositions:

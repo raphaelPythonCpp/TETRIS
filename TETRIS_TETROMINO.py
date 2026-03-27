@@ -38,11 +38,12 @@ class Tetromino(object):
         else :
             self.y += 1
 
-    def fixer(self):
+    def fixer(self, tester_lignes=True):
         self.bouge = False
         self.yOmbre = None
         self.jeu.mettre_dans_grille(self.jeu.grille, self.x, self.y, self.orientation, self.type, self.couleur, coin=False)
-        self.jeu.tester_lignes(self.jeu.grille)
+        if tester_lignes:
+            self.jeu.tester_lignes(self.jeu.grille, reel=True)
         self.jeu.changer_nb_coups(deltaCoups=1)
         self.jeu.calculer_sommeNbBlocs(ajout=4) #ATTENTION A modifier si tetromino plus seulement de 4 pièces
         self.jeu.generer_piece()
@@ -60,14 +61,3 @@ class Tetromino(object):
         self.yOmbre = self.y
         while not self.jeu.tester_chevauchement(self.jeu.grille, self.x, self.yOmbre+1, self.orientation, self.type):
             self.yOmbre += 1
-
-    """def afficher(self, ombre=True, grille=None):
-        if grille is None:
-            grille = self.jeu.grille
-        self.mettre_dans_grille(ombre=True, grille=grille)
-        self.mettre_dans_grille(grille=grille)""""""
-        for y in range(len(self.matrice)):
-            for x in range(len(self.matrice[y])):
-                if self.matrice[y][x] == 1:
-                    pygame.draw.rect(fenetre, self.couleur, (self.jeu.xDebutCases+self.jeu.tailleCase*(self.x+x), self.jeu.yDebutCases+self.jeu.tailleCase*(self.y+y), self.jeu.tailleCase, self.jeu.tailleCase))
-                    pygame.draw.rect(fenetre, (220, 220, 220), (self.jeu.xDebutCases+self.jeu.tailleCase*(self.x+x), self.jeu.yDebutCases+self.jeu.tailleCase*(self.yOmbre+y), self.jeu.tailleCase, self.jeu.tailleCase))"""
