@@ -109,6 +109,36 @@ class Jeu(object):
         self.calculer_sommeNbBlocs(ajout=0)
         self.algo.changer_nb_coups(ajout=0)
 
+    def tester_jeu(self, nbParties):
+        for partie in range(1,nbParties+1):
+            self.jouer(modeAlgo=False)
+            print(f"Partie {partie} : Score {self.score} || Nb Coups : {self.nbCoups}")
+            if self.quitterProgramme :
+                break
+
+    def evaluation_algo(self, nbParties):
+        tAvant = datetime.now()
+        sommeScores, sommeNbCoups = 0,0
+        scoreAvant, nbCoupsAvant = 0, 0
+        visuel = self.visuel
+        self.visuel = False
+        print('\n\n')
+        for iP in range(1, nbParties+1):
+            print("\033[F\033[F", end="")
+            print(f"Résultats précédents : Score {scoreAvant} || Nb Coups : {nbCoupsAvant}")
+            print(f"Evaluation Algorithme Génétique : Partie {iP} ({(iP)/nbParties*100:.2f}%)", flush=True)
+            self.jouer(modeAlgo=True)
+            scoreAvant, nbCoupsAvant = self.score, self.nbCoups
+            sommeScores += scoreAvant
+            sommeNbCoups += nbCoupsAvant
+            if self.quitterProgramme :
+                break
+        self.visuel = visuel
+        t = datetime.now()
+        print(f"Résultats Finaux : ScoreMoyen = {sommeScores/nbParties:.2f} || NbCoupsMoyen = {sommeNbCoups/nbParties:.2f}")
+        print(f"{tAvant.hour}:{tAvant.minute}'{tAvant.second}\" -> {t.hour}:{t.minute}'{t.second}\"")
+
+
     def jouer(self, modeAlgo=False):
         self.reset(modeAlgo=modeAlgo)
         while not self.finJeu:
