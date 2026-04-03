@@ -15,7 +15,7 @@ class Algorithme_Genetique(object):
         self.nbLignes = nbLignes
         self.nbColonnes = nbColonnes
         
-        self.tauxMutationInit = 0.5
+        self.tauxMutationInit = 1
         self.tauxMutation = self.tauxMutationInit
         self.decrementationTM = (0.01 / self.tauxMutation) ** (1/self.nbGenerations)
         
@@ -44,7 +44,7 @@ class Algorithme_Genetique(object):
     def entrainement(self):
         tAvant = datetime.now()
         visuel = False
-        sauvergardeFichiers = True
+        sauvegardeFichiers = True
         lScoresMoyens = [(None,None) for iG in range(self.nbGenerations)]
         lNbCoupsMoyens = [(None, None) for iG in range(self.nbGenerations)]
         lConstantesMoyennes = [[None]*self.nbConstantes for iG in range(self.nbGenerations)]
@@ -93,7 +93,7 @@ class Algorithme_Genetique(object):
                         iIndividuAM += 1
             self.tauxMutation *= self.decrementationTM
             #print(f"Sélection naturelle pour les {iIndividuAM} / {self.nbIndividus}")
-            if sauvergardeFichiers:
+            if sauvegardeFichiers:
                 with open("lScoresMoyens.txt", "w") as fichier:
                     fichier.write(str(lScoresMoyens))
                 with open("lNbCoupsMoyens.txt", "w") as fichier:

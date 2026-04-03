@@ -5,9 +5,10 @@ from math import*
 from TETRIS_algorithme_v7 import*
 from TETRIS_TETROMINO_v3 import*
 from TETRIS_algorithm_genetique_v3 import*
+from TETRIS_NES_v1 import*
 
 class Jeu(object):
-    def __init__(self, fenetre, police, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, nbFramesAffichage=1, entrainementGreedy=False, entrainementGenetique=False, gameInfini=False):
+    def __init__(self, fenetre, police, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, nbFramesAffichage=1, entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, gameInfini=False):
         self.quitterProgramme = False
         self.finJeu = False
         self.visuel = visuel
@@ -75,11 +76,16 @@ class Jeu(object):
         #Algo Genetique
         self.entrainementGenetique = entrainementGenetique
         self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, nbIndividus=10, nbGenerations=10, nbParties=150, nbConstantes=self.algo.nbConstantes, tauxSurvivant=0.3, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, nbCoupsMax=self.nbCoupsMax)
+        #NES
+        self.entrainementNES = entrainementNES
+        self.nes = Neural_Evolution_Strategies(self, self.algo, self.algo.nbConstantes)
         self.reset()
         if self.entrainementGreedy:
             self.entrainement_greedy()
         if self.entrainementGenetique :
             self.algoGenetique.entrainement()
+        if self.entrainementNES:
+            self.nes.entrainement(10, 30)
 
     def reset(self, modeAlgo=False):
         self.finJeu = False
@@ -116,17 +122,21 @@ class Jeu(object):
             if self.quitterProgramme :
                 break
 
-    def evaluation_algo(self, nbParties):
+    def evaluation_algo(self, nbParties, lConstantes, affichage):
         tAvant = datetime.now()
         sommeScores, sommeNbCoups = 0,0
         scoreAvant, nbCoupsAvant = 0, 0
         visuel = self.visuel
         self.visuel = False
-        print('\n\n')
+        lConstantesAvant = self.algo.lConstantes
+        self.algo.lConstantes = lConstantes
+        if affichage:
+            print('\n\n')
         for iP in range(1, nbParties+1):
-            print("\033[F\033[F", end="")
-            print(f"Résultats précédents : Score {scoreAvant} || Nb Coups : {nbCoupsAvant}")
-            print(f"Evaluation Algorithme Génétique : Partie {iP} ({(iP)/nbParties*100:.2f}%)", flush=True)
+            if affichage:
+                print("\033[F\033[F", end="")
+                print(f"Résultats précédents : Score {scoreAvant} || Nb Coups : {nbCoupsAvant}")
+                print(f"Evaluation Algorithme Génétique : Partie {iP} ({(iP)/nbParties*100:.2f}%)", flush=True)
             self.jouer(modeAlgo=True)
             scoreAvant, nbCoupsAvant = self.score, self.nbCoups
             sommeScores += scoreAvant
@@ -134,10 +144,14 @@ class Jeu(object):
             if self.quitterProgramme :
                 break
         self.visuel = visuel
+        self.algo.lConstantes = lConstantesAvant
+        scoreMoyen = sommeScores/nbParties
+        nbCoupsMoyen = sommeNbCoups/nbParties
         t = datetime.now()
-        print(f"Résultats Finaux : ScoreMoyen = {sommeScores/nbParties:.2f} || NbCoupsMoyen = {sommeNbCoups/nbParties:.2f}")
-        print(f"{tAvant.hour}:{tAvant.minute}'{tAvant.second}\" -> {t.hour}:{t.minute}'{t.second}\"")
-
+        if affichage:
+            print(f"Résultats Finaux : ScoreMoyen = {scoreMoyen:.2f} || NbCoupsMoyen = {sommeNbCoups/nbParties:.2f}")
+            print(f"{tAvant.hour}:{tAvant.minute}'{tAvant.second}\" -> {t.hour}:{t.minute}'{t.second}\"")
+        return (scoreMoyen,nbCoupsMoyen)
 
     def jouer(self, modeAlgo=False):
         self.reset(modeAlgo=modeAlgo)

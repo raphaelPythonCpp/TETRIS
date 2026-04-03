@@ -17,7 +17,7 @@ game_infini = True
 env = Jeu(fenetre=fenetre, police=police, 
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes, 
           visuel=True, nbFramesAffichage=1, 
-          entrainementGreedy=False, entrainementGenetique=False)
+          entrainementGreedy=False, entrainementGenetique=False, entrainementNES=True)
 
 env.changer_game_nb_coups_max(game_infini)
 env.changer_somme_nb_blocs(False)
@@ -29,7 +29,7 @@ if not env.entrainementGenetique:
                           #[0.51, 0.57, 0.89, -0.04, 0.19, 0.66] => 516.7
                           #[0.27, 0.47, 0.22, 0.04, 0.06, 0.55] => 525.5
 else :
-    env.evaluation_algo(nbParties=1000)
+    env.evaluation_algo(nbParties=1000, lConstantes=env.algo.lConstantes, affichage=True)
 
 env.tester_jeu(nbParties=10)
 
