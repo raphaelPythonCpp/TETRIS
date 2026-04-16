@@ -16,13 +16,7 @@ class Algorithme(object):
         self.nbCoups = 3 #{1 : piece, 2 : piece+nextPiece, 3 : piece+holdPiece}
         self.nbCoupsMax = 3
         #Calcul score
-        lCouchesTorch = []
-        for i in range(1, len(lNbNoeuds)):
-            nbN1, nbN2 = lNbNoeuds[i-1], lNbNoeuds[i]
-            lCouchesTorch.append(torch.nn.Linear(nbN1, nbN2))
-            if i+1 < len(lNbNoeuds):
-                lCouchesTorch.append(torch.nn.LeakyReLU(0.01))
-        self.modele = torch.nn.Sequential(*lCouchesTorch)
+        self.modele = self.creer_reseau(lNbNoeuds)
         self.lScoresMax = [self.jeu.nbLignes, self.jeu.nbLignes, self.jeu.nbColonnes*self.jeu.nbLignes, self.jeu.nbColonnes*(self.jeu.nbLignes-1), self.jeu.nbLignes*(self.jeu.nbColonnes-1), 4, self.jeu.nbColonnes*(self.jeu.nbLignes*(self.jeu.nbLignes+1)//2)]
         self.nbInput = lNbNoeuds[0]
         assert len(self.lScoresMax) == self.nbInput
@@ -469,11 +463,20 @@ class Algorithme(object):
             self.tPositionsAvant = pygame.time.get_ticks()
         self.visuelPositions = not self.visuelPositions
 
+    def creer_reseau(self, lNbNoeuds):
+        lCouchesTorch = []
+        for i in range(1, len(lNbNoeuds)):
+            nbN1, nbN2 = lNbNoeuds[i-1], lNbNoeuds[i]
+            lCouchesTorch.append(torch.nn.Linear(nbN1, nbN2))
+            if i+1 < len(lNbNoeuds):
+                lCouchesTorch.append(torch.nn.LeakyReLU(0.01))
+        return torch.nn.Sequential(*lCouchesTorch)
+
     def charger_dico_reseau_sans_tensor(self, dicoReseau):
         dicoReseau2 = {k : torch.tensor(v, dtype=torch.float32) for k,v in dicoReseau.items()}
         self.modele.load_state_dict(dicoReseau2)
 
-    def evaluation_algo(self, nbParties, modele, affichage, visuel):
+    def evaluation_algo(self, nbParties, modele, affichage, visuel, fonctionAvancement=None):
         tAvant = datetime.now()
         sommeScores, sommeNbCoups = 0,0
         scoreAvant, nbCoupsAvant = 0, 0
@@ -488,6 +491,8 @@ class Algorithme(object):
                 print("\033[F\033[F", end="")
                 print(' '*80 + '\r' + f"Résultats précédents : Score {scoreAvant} || Nb Coups : {nbCoupsAvant}")
                 print(' '*80 + '\r' + f"Evaluation Algorithme : Partie {iP} ({(iP)/nbParties*100:.2f}%)", flush=True)
+            if fonctionAvancement is not None:
+                fonctionAvancement(100*iP/nbParties)
             self.jeu.jouer(modeAlgo=True)
             scoreAvant, nbCoupsAvant = self.jeu.score, self.jeu.nbCoups
             sommeScores += scoreAvant

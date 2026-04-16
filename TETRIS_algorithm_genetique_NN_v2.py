@@ -55,7 +55,8 @@ class Algorithme_Genetique(object):
         lScoresRI, lNbCoupsRI, lDicoReseauRI, lDicoReseauERI = self.recherche_initiale(self.nbIndividus)
         lScores = [lScoresRI] + [None for iG in range(self.nbGenerations)]
         lNbCoups = [lNbCoupsRI] + [None for iG in range(self.nbGenerations)]
-        lDicoReseau = [self.lNbNoeuds] + [lDicoReseauRI] + [None for iG in range(self.nbGenerations)]
+        lDicoReseau = [self.lNbNoeuds] + [None for iG in range(self.nbGenerations+1)]
+        lDicoReseau[1] = lDicoReseauRI[0]
         self.lIndividus = []
         for i in range(self.nbIndividus):
             self.lIndividus.append(Individu_NN(self.jeu, self, self.algo, self.lNbNoeuds, lDicoReseauERI[i], self.nbLignes, self.nbColonnes))

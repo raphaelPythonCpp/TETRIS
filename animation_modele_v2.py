@@ -13,29 +13,30 @@ clock = pygame.time.Clock()
 GA = True
 NES = False
 DRL = False
+assert GA and not NES and not DRL #pas implémentés
 
 if GA : 
     fichier = "lDicoReseau_GA_NN"
 elif DRL:
     fichier = "lConstantes_DRL"
 with open(f"{fichier}.txt") as fichier:
-    lConstantes = eval(fichier.read())
+    data = eval(fichier.read())
+    lNbNoeuds = data[0]
+    lDicoReseau = data[1:]
 
-nbEpisodes = sum(1 if data is not None else 0 for data in lConstantes)
-lItems = [[True, True, 0, None, None], [True, True, 2, None, None]] # (weight, bias, number, nbNodesBefore, nbNodesCurrent)
-nbLayers = len(lItems)+1
+nbEpisodes = sum(1 if data is not None else 0 for data in lDicoReseau)
+lItems = [[True, True, 2*(i-1), lNbNoeuds[i-1], lNbNoeuds[i]] for i in range(1, len(lNbNoeuds))] # (weight, bias, number, nbNodesBefore, nbNodesCurrent)
+nbLayers = len(lNbNoeuds)
 maxWeight, minWeight = -float("inf"), float("inf")
 maxBias, minBias = -float("inf"), float("inf")
-for i, (w,b,n,_,_) in enumerate(lItems):
+for i, (w,b,n,nbNA,nbNC) in enumerate(lItems):
     if w : #mandatory
-        lItems[i][3] = len(lConstantes[0][f"{n}.weight"][0])
-        lItems[i][4] = len(lConstantes[0][f"{n}.weight"])
-        maxWeight = max(maxWeight, max(max(max(lConstantes[iE][f"{n}.weight"][j]) for j in range(lItems[i][4])) for iE in range(nbEpisodes)))
-        minWeight = min(minWeight, min(min(min(lConstantes[iE][f"{n}.weight"][j]) for j in range(lItems[i][4])) for iE in range(nbEpisodes)))
+        maxWeight = max(maxWeight, max(max(max(lValeurs) for lValeurs in dicoReseau[f"{n}.weight"]) for dicoReseau in lDicoReseau[:nbEpisodes]))
+        minWeight = min(minWeight, min(min(min(lValeurs) for lValeurs in dicoReseau[f"{n}.weight"]) for dicoReseau in lDicoReseau[:nbEpisodes]))
     if b :
-        maxBias = max(maxBias, max(max(lConstantes[iE][f"{n}.bias"]) for iE in range(nbEpisodes)))
-        minBias = min(minBias, min(min(lConstantes[iE][f"{n}.bias"]) for iE in range(nbEpisodes)))
-print("lItems  :  ", lItems)
+        maxBias = max(maxBias, max(max(dicoReseau[f"{n}.bias"]) for dicoReseau in lDicoReseau[:nbEpisodes]))
+        minBias = min(minBias, min(min(dicoReseau[f"{n}.bias"]) for dicoReseau in lDicoReseau[:nbEpisodes]))
+#print("lItems  :  ", lItems)
 
 def calculate_lxy(nbNodes, x, r, h):
     dy = (h-2*r) / nbNodes
@@ -69,7 +70,7 @@ def calculate_lp1p2p3p4(lXYBefore, lXYCurrent, w):
 
 wEdges = radiusNodes / 7
 lListeLP1P2P3P4 = [calculate_lp1p2p3p4(listeLXY[i-1], listeLXY[i], wEdges) for i in range(1, nbLayers)]
-print(lListeLP1P2P3P4)
+#print(lListeLP1P2P3P4)
 
 def draw_nodes_layer(fenetre, lXY, lBias, biasMax, biasMin, r, rMax, rMin, gMax, gMin, bMax, bMin, color=None):
     for (xN, yN), bias in zip(lXY, lBias) :
@@ -91,11 +92,12 @@ def draw_texte(fenetre, text, xT, yT, c):
 def afficher(fenetre, iEpisode):
     fenetre.fill((0,0,0))
 
+    for i in range(1, nbLayers):
+        draw_edges_layer(fenetre, lListeLP1P2P3P4[i-1], lDicoReseau[iEpisode][f"{lItems[i-1][2]}.weight"], maxWeight, minWeight, 0, 255, 255, 0, 0, 0)
     draw_nodes_layer(fenetre, listeLXY[0], [0]*lItems[0][3], maxBias, minBias, radiusNodes, 0, 255, 255, 0, 0, 0, color=(255,255,255))
     for i in range(1, nbLayers):
-        draw_nodes_layer(fenetre, listeLXY[i], lConstantes[iEpisode][f"{lItems[i-1][2]}.bias"], maxBias, minBias, radiusNodes, 0, 255, 255, 0, 0, 0)
-        draw_edges_layer(fenetre, lListeLP1P2P3P4[i-1], lConstantes[iEpisode][f"{lItems[i-1][2]}.weight"], maxWeight, minWeight, 0, 255, 255, 0, 0, 0)
-
+        draw_nodes_layer(fenetre, listeLXY[i], lDicoReseau[iEpisode][f"{lItems[i-1][2]}.bias"], maxBias, minBias, radiusNodes, 0, 255, 255, 0, 0, 0)
+    
     draw_texte(fenetre, f"Episode : {iEpisode+1}", wFenetre*0.8, hFenetre*0.1, (255,255,255))
     
     pygame.display.flip()

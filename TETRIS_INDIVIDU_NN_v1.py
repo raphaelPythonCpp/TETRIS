@@ -1,8 +1,8 @@
 import torch
-from TETRIS_TETROMINO_v3 import*
+from TETRIS_TETROMINO_v4 import*
 
 class Individu_NN(torch.nn.Module):
-    def __init__(self, jeu, algoEntrainement, algo, lCouches, dicoReseau, nbLignes, nbColonnes):
+    def __init__(self, jeu, algoEntrainement, algo, lNbNoeuds, dicoReseau, nbLignes, nbColonnes):
         super().__init__()
         
         self.jeu = jeu
@@ -10,14 +10,16 @@ class Individu_NN(torch.nn.Module):
         self.algo = algo
         self.nbCoups = 0
         
+        self.lNbNoeuds = lNbNoeuds
         lCouchesTorch = []
-        for i, (nbN1, nbN2) in enumerate(lCouches):
-            lCouchesTorch.append(torch.nn.Linear(nbN2, nbN1))
-            if i+1 < len(lCouches):
+        for i in range(1, len(lNbNoeuds)):
+            nbN1, nbN2 = lNbNoeuds[i-1], lNbNoeuds[i]
+            lCouchesTorch.append(torch.nn.Linear(nbN1, nbN2))
+            if i+1 < len(lNbNoeuds):
                 lCouchesTorch.append(torch.nn.LeakyReLU(0.01))
         self.modele = torch.nn.Sequential(*lCouchesTorch)
         self.dicoReseau = dicoReseau
-        self.modele = self.modele.load_state_dict(self.dicoReseau)
+        self.modele.load_state_dict(self.dicoReseau)
         self.score = 0
         self.finJeu = False
         #Grille
@@ -27,10 +29,9 @@ class Individu_NN(torch.nn.Module):
         self.lPositionsPieces = []
         self.piece = None
         self.holdPiece = None
-        self.reset(dicoReseau=self.dicoReseau)
+        self.reset()
 
-    def reset(self, dicoReseau):
-        self.modele = self.modele.load_state_dict(dicoReseau)
+    def reset(self):
         self.nbCoups = 0
         self.score = 0
         self.finJeu = False
@@ -89,12 +90,12 @@ class Individu_NN(torch.nn.Module):
         if self.finJeu:
             return
         if self.algoEntrainement.modeCoups == 1 :
-            self.algo.appliquer_position_1_coup(self.grille, self.piece, position, False, fScore=self.changer_score)
+            self.algo.appliquer_position_1_coup(self.grille, self.piece, position, reel=False, fScore=self.changer_score)
         elif self.algoEntrainement.modeCoups == 2:
             raise KeyError("Mode coups 2 pas implémenté !")
             self.algo.appliquer_position_2_coups(self.grille, self.piece, position[:4], self.nextPiece, position[:4])
         elif self.algoEntrainement.modeCoups == 3: #ATTENTION on suppose que le swap a été fait si nécessaire
-            self.algo.appliquer_position_1_coup(self.grille, self.piece, position, False, fScore=self.changer_score)
+            self.algo.appliquer_position_1_coup(self.grille, self.piece, position, reel=False, fScore=self.changer_score)
 
     def changer_score(self, gain):
         self.score += gain

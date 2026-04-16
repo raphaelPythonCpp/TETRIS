@@ -1,23 +1,23 @@
-from TETRIS_jeu_v10_raphael import*
+from TETRIS_jeu_v11_raphael import*
 from math import floor
 
 pygame.init()
 
 wFenetre, hFenetre = 800, 600
 fenetre = pygame.display.set_mode((wFenetre, hFenetre))
-pygame.display.set_caption("TETRIS v8 Raphaël")
+pygame.display.set_caption("TETRIS v11 Raphaël")
 nbColonnes, nbLignes = 5, 10
 tailleCase = min(0.4*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
-temps = pygame.time.Clock()
+horloge = pygame.time.Clock()
 police = pygame.font.SysFont("Arial", 15, bold=True, italic=False)
 
 game_infini = False
-evaluation = True
-env = Jeu(fenetre=fenetre, police=police, 
+evaluation = False
+env = Jeu(fenetre=fenetre, police=police, horloge=horloge,
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes, 
-          visuel=True, nbFramesAffichage=1, lNbNoeuds=list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())),
-          entrainementGreedy=False, entrainementGenetique=True, entrainementNES=False, entrainementDRL=False)
+          visuel=True, nbFramesAffichage=1, lNbNoeuds=[7, 8, 1], #list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())),
+          entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False)
 
 env.changer_game_nb_coups_max(game_infini)
 env.changer_somme_nb_blocs(False)

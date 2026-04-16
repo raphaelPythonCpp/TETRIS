@@ -3,15 +3,16 @@ import pygame
 import random as rd
 from math import floor, ceil, sqrt
 from datetime import datetime
-from TETRIS_algorithme_NN_v1 import*
+from TETRIS_algorithme_NN_v2 import*
 from TETRIS_TETROMINO_v4 import*
-from TETRIS_algorithm_genetique_NN_v1 import*
-from TETRIS_NES_v1 import*
-from TETRIS_DRL_v3 import*
-from test import optimiser_avec_cmaes
+from TETRIS_algorithm_genetique_NN_v2 import*
+#from TETRIS_NES_v1 import*
+#from TETRIS_DRL_v3 import*
+from menu_didactique_v1 import*
 
 class Jeu(object):
-    def __init__(self, fenetre, police, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, nbFramesAffichage=1, lNbNoeuds=[7,1], entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
+    def __init__(self, fenetre, police, horloge, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, nbFramesAffichage=1, lNbNoeuds=[7,1], entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
+        self.horloge = horloge
         self.quitterProgramme = False
         self.finJeu = False
         self.visuel = visuel
@@ -36,12 +37,12 @@ class Jeu(object):
         self.police = police
         self.nbFramesAffichage = nbFramesAffichage
         self.iFrameAffichage = 0
-        self.wFenetre, self.hFenetre = pygame.display.get_surface().get_size()
+        self.wF, self.hF = pygame.display.get_surface().get_size()
         self.tailleCase = tailleCase
         self.bordure = 0.03
         #Grille
         self.nbColonnes, self.nbLignes = nbColonnes, nbLignes
-        self.xDebutCases, self.yDebutCases = self.wFenetre/2 - nbColonnes/2*tailleCase, self.hFenetre/2 - nbLignes/2*tailleCase
+        self.xDebutCases, self.yDebutCases = self.wF/2 - nbColonnes/2*tailleCase, self.hF/2 - nbLignes/2*tailleCase
         self.grille = [[None]*self.nbColonnes for _ in range(self.nbLignes)]
         self.grilleNext = [[None]*4 for _ in range(4)]
         self.grilleHold = [[None]*4 for _ in range(4)]
@@ -77,25 +78,26 @@ class Jeu(object):
         self.algo = Algorithme(jeu=self, lNbNoeuds=self.lNbNoeuds) #toujours vrai lui
         self.modeAlgo = False
         self.texteNbCoupsAlgo = None
-        #Algo Genetique
-        self.entrainementGenetique = entrainementGenetique
-        self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, lNbNoeuds=self.lNbNoeuds, tauxSurvivant=0.3, tauxRandom=0, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, modeCoups=3) if self.entrainementGenetique else None
-        #NES
-        self.entrainementNES = entrainementNES
-        self.nes = Neural_Evolution_Strategies(self, self.algo, self.lNbNoeuds[0]) if self.entrainementNES else None
         #DRL
-        self.entrainementDRL = entrainementDRL
-        self.pg = Policy_Gradient(self, self.algo, 1000, 30, self.nbCoupsMax, 1, self.lNbNoeuds[0], self.nbLignes, self.nbColonnes) if self.entrainementDRL else None
         self.reset()
-        optimiser_avec_cmaes(self.algo.modele, self, self.algo)
+        self.entrainementGreedy = entrainementGreedy
         if self.entrainementGreedy:
             self.entrainement_greedy()
+        self.entrainementGenetique = entrainementGenetique
         if self.entrainementGenetique :
+            self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, lNbNoeuds=self.lNbNoeuds, tauxSurvivant=0.3, tauxRandom=0, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, modeCoups=3) if self.entrainementGenetique else None
             self.algoGenetique.entrainement()
-        if self.entrainementNES:
+        self.entrainementNES = entrainementNES
+        if self.entrainementNES and False:
+            self.nes = Neural_Evolution_Strategies(self, self.algo, self.lNbNoeuds[0]) if self.entrainementNES else None
             self.nes.entrainement(10, 30)
-        if entrainementDRL:
+        self.entrainementDRL = entrainementDRL
+        if self.entrainementDRL and False:
+            self.pg = Policy_Gradient(self, self.algo, 1000, 30, self.nbCoupsMax, 1, self.lNbNoeuds[0], self.nbLignes, self.nbColonnes) if self.entrainementDRL else None
             self.pg.entrainement()
+        
+        self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 100) #ATTENTION : pas le bon nom de fichier
+        self.menuDidactique.boucle()
         
 
     def reset(self, modeAlgo=False):

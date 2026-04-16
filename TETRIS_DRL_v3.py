@@ -4,7 +4,7 @@ from math import exp, log, ceil
 from random import uniform, randint, shuffle, sample
 from collections import deque
 from copy import deepcopy
-from TETRIS_INDIVIDU_v1 import*
+from TETRIS_INDIVIDU_NN_v1 import*
 
 class Policy_Gradient(torch.nn.Module):
     def __init__(self, jeu, algo, nbEpisodes, nbParties, nbCoupsMax, modeCoups, nbConstantes, nbLignes, nbColonnes):
@@ -20,17 +20,20 @@ class Policy_Gradient(torch.nn.Module):
         self.nbLignes, self.nbColonnes = nbLignes, nbColonnes
         #Constantes entrainement
         self.gamma = 0.999
-        #Jeu
-        self.generer_pieces_partie()
-        self.individu = Individu(self.jeu, self, self.algo, None, self.nbLignes, self.nbColonnes)
         #Réseau neuronnes
-        self.modele = torch.nn.Sequential(#torch.nn.Linear(self.nbConstantes, 1, False))
-                                          #torch.nn.Linear(self.nbConstantes, 8, True), torch.nn.ReLU(), torch.nn.Linear(8, 1, True))
-                                          torch.nn.Linear(self.nbConstantes, 16, True), torch.nn.ReLU(), torch.nn.Linear(16, 1, True))
-                                          #torch.nn.Linear(self.nbConstantes,32,True), torch.nn.ReLU(), torch.nn.Linear(32,16,True), torch.nn.ReLU(), torch.nn.Linear(16,1,True))
-        self.optimiseur = torch.optim.Adam(self.modele.parameters(), lr=1e-3)
+        lCouches = [self.nbConstantes, 1]
+                  #[self.nbConstantes, 8, 1)]
+                  #[self.nbConstantes, 16, 1)]
+                  #[self.nbConstantes, 32, 16, 1]
+        #A FINIR !
+        #self.optimiseur = torch.optim.Adam(self.modele.parameters(), lr=1e-3)
         self.fonctionLoss = torch.nn.MSELoss()
         self.trajectoire = []
+
+        #Jeu
+        self.generer_pieces_partie()
+        #self.individu = Individu_NN(self.jeu, self, self.algo, lNbNoeuds, None, self.nbLignes, self.nbColonnes)
+        #A Finir
 
     def reset(self):
         pass
@@ -55,7 +58,7 @@ class Policy_Gradient(torch.nn.Module):
                     if not lPositions1:
                         self.individu.finJeu = True
                         break
-                    lCaracteristiques = [self.algo.caracteristiques(self.individu.grille, *position)[0] for position in lPositions1]
+                    lCaracteristiques = [self.algo.caracteristiques(self.individu.grille, *position, in_place=True)[0] for position in lPositions1]
                     listeInput = torch.tensor(lCaracteristiques, dtype=torch.float32)
                     lOutput = self.modele(listeInput).squeeze(-1)
                     lProbas = torch.softmax(lOutput, dim=0)

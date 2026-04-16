@@ -23,7 +23,9 @@ class Tetromino(object):
 
     def reset(self, grille):
         self.x = self.jeu.nbColonnes//2 - 1
-        self.orientation = 0
+        if self.orientation != 0:
+            self.orientation = 0
+            self.matrice = self.jeu.dicoMatricesPieces[(self.type, self.orientation)]
         if all(self.matrice[i][1] > 0 for i in range(len(self.matrice))):
             self.y = -1
         else :
@@ -57,7 +59,7 @@ class Tetromino(object):
         pygame.time.delay(500)"""
         self.jeu.mettre_dans_grille(grille, self.x, self.y, self.orientation, self.type, self.couleur, coin=False, reel=reel)
         if tester_lignes:
-            self.jeu.tester_lignes(grille, reel=reel, fScore=fScore)
+            grille[:] = self.jeu.tester_lignes(grille, reel=reel, fScore=fScore)
         if reel:
             self.jeu.changer_nb_coups(deltaCoups=1)
             self.jeu.calculer_sommeNbBlocs(ajout=4) #ATTENTION A modifier si tetromino plus seulement de 4 pièces
