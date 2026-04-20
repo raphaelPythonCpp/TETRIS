@@ -13,11 +13,12 @@ horloge = pygame.time.Clock()
 police = pygame.font.SysFont("Arial", 15, bold=True, italic=False)
 
 game_infini = False
-evaluation = False
+evaluation = True
 env = Jeu(fenetre=fenetre, police=police, horloge=horloge,
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes, 
-          visuel=True, nbFramesAffichage=1, lNbNoeuds=[7, 8, 1], #list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())),
-          entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False)
+          visuel=True, menus=False, nbFramesAffichage=1, lNbNoeuds=list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())),
+          entrainementGreedy=False, entrainementGenetique=True, entrainementNES=False, entrainementDRL=False,
+          gameInfini=game_infini)
 
 env.changer_game_nb_coups_max(game_infini)
 env.changer_somme_nb_blocs(False)
@@ -36,7 +37,7 @@ if not env.entrainementGenetique:
                           #[0.27, 0.47, 0.22, 0.04, 0.06, 0.55, 0] => 525.5 (5x12)
                           #[0.33, 0.07, 0.66, 0.94, 0.42, 0.19, 0] => 
 if evaluation and not env.quitterProgramme:
-    env.algo.evaluation_algo(nbParties=200, modele=env.algo.modele, affichage=True, visuel=False)
+    env.algo.evaluation_algo(nbParties=100, modele=env.algo.modele, affichage=True, visuel=False)
 
 if not env.quitterProgramme:
     env.tester_jeu(nbParties=10)

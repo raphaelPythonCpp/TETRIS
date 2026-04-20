@@ -23,7 +23,7 @@ with open(f"{fichier}.txt") as fichier:
     data = eval(fichier.read())
     lNbNoeuds = data[0]
     lDicoReseau = data[1:]
-
+print(lNbNoeuds)
 nbEpisodes = sum(1 if data is not None else 0 for data in lDicoReseau)
 lItems = [[True, True, 2*(i-1), lNbNoeuds[i-1], lNbNoeuds[i]] for i in range(1, len(lNbNoeuds))] # (weight, bias, number, nbNodesBefore, nbNodesCurrent)
 nbLayers = len(lNbNoeuds)
@@ -44,7 +44,7 @@ def calculate_lxy(nbNodes, x, r, h):
     lXY = [(x, yMin+dy*i) for i in range(nbNodes)]
     return lXY
 
-radiusNodes = min(wFenetre/(3*(nbLayers+1)), hFenetre/(3*(max(nbNC for w,b,n,nbNB,nbNC in lItems)+1)))
+radiusNodes = min(wFenetre/(3*(nbLayers+1)), hFenetre/(3*max(lNbNoeuds)))
 dx = (wFenetre-2*radiusNodes) / (nbLayers-0.5)
 xMin = wFenetre/2 - nbLayers//2*dx + dx/2*(nbLayers%2==0)
 listeLXY = [calculate_lxy(lItems[0][3], xMin, radiusNodes, hFenetre)] + [calculate_lxy(lItems[i-1][4], xMin+i*dx, radiusNodes, hFenetre) for i in range(1, nbLayers)]

@@ -11,7 +11,7 @@ from TETRIS_algorithm_genetique_NN_v2 import*
 from menu_didactique_v1 import*
 
 class Jeu(object):
-    def __init__(self, fenetre, police, horloge, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, nbFramesAffichage=1, lNbNoeuds=[7,1], entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
+    def __init__(self, fenetre, police, horloge, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, menus=True, nbFramesAffichage=1, lNbNoeuds=[7,1], entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
         self.horloge = horloge
         self.quitterProgramme = False
         self.finJeu = False
@@ -96,8 +96,10 @@ class Jeu(object):
             self.pg = Policy_Gradient(self, self.algo, 1000, 30, self.nbCoupsMax, 1, self.lNbNoeuds[0], self.nbLignes, self.nbColonnes) if self.entrainementDRL else None
             self.pg.entrainement()
         
-        self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 100) #ATTENTION : pas le bon nom de fichier
-        self.menuDidactique.boucle()
+        self.menus = menus
+        if self.menus :
+            self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 100) #ATTENTION : pas le bon nom de fichier
+            self.menuDidactique.boucle()
         
 
     def reset(self, modeAlgo=False):
@@ -204,7 +206,7 @@ class Jeu(object):
             self.finJeu = True
 
     def changer_game_nb_coups_max(self, gameInfini):
-        self.nbCoupsMax = 1e9 if gameInfini else 1000
+        self.nbCoupsMax = 1e9 if gameInfini else int(input("nbCoupsMax : "))
 
     def changer_somme_nb_blocs(self, actif):
         self.calcul_sommeNbBlocs = actif

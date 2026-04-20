@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
+from matplotlib.animation import FuncAnimation
 from math import log10
 
 def distribution(lValeurs, ecart): #trié ordre décroissant
@@ -41,10 +42,44 @@ def changer_ecart(_, slider, lValeurs, nom, axe):
     vMin, vMax = calculs(ecart, lValeurs, nom, axe)
     fig.canvas.draw_idle()
 
+def changer_ecart_2(_, slider, lValeurs, nom, axe):
+    global ani
+    try:
+        ani.event_source.stop()
+    except:
+        pass
+    ecart_new = int(10**slider.val)
+    ani = animer_transition(lValeurs, nom, axe, 1, ecart_new)
+
+def animer_transition(lValeurs, nom, axe, ecart_old, ecart_new, steps=20):
+    ecarts = [int(ecart_old + (ecart_new-ecart_old)*i/steps) for i in range(steps)]
+
+    def update(frame):
+        ecart = max(1, ecarts[frame])
+        lValeursEffectifs = distribution(lValeurs, ecart)
+
+        axe.clear()
+        tracer_courbe(lValeursEffectifs, nom, axe)
+
+        fig.canvas.draw_idle()      # 🔴 essentiel
+        return axe.patches
+
+    ani = FuncAnimation(
+        fig,
+        update,
+        frames=len(ecarts),
+        interval=10,
+        blit=False,
+        repeat=False
+    )
+
+    return ani
+
 with open("recherche_initiale_GA_NN.txt", "r") as fichier:
     nbIndividus, lNbNoeuds, lScores, lNbCoups = eval(fichier.read()) #triés ordre décroissant
-    lScores = sorted(lScores, reverse=False)
-    lNbCoups = sorted(lNbCoups, reverse=False)
+    iMax = max(i if doublet is not None else -1 for i,doublet in enumerate(lScores))
+    lScores = sorted([score for iI, score in lScores[:iMax+1]], reverse=False)
+    lNbCoups = sorted([nbCoups for iI,nbCoups in lNbCoups[:iMax+1]], reverse=False)
 
 fig,(axe1,axe2,axe3,axe4) = plt.subplots(4, 1)
 axe1.set_position([0.1, 0.65, 0.7, 0.25])

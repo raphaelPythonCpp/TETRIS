@@ -19,15 +19,15 @@ class Algorithme_Genetique(object):
         self.nbLignes = nbLignes
         self.nbColonnes = nbColonnes
         
-        self.tauxMutationInit = 0.3
-        self.tauxMutationFin = 0.01
+        self.tauxMutationInit = 0.15
+        self.tauxMutationFin = 0.001
         self.tauxMutation = self.tauxMutationInit
         self.decrementationTM = (self.tauxMutationInit - self.tauxMutationFin) / max(self.nbGenerations - 1, 1) #(0.1 / self.tauxMutation) ** (1/self.nbGenerations)
         
         self.modeCoups = modeCoups
         #lProchainesPieces
         self.tauxPartiesRandomInit = 0
-        self.tauxPartiesRandomFin = 0.9
+        self.tauxPartiesRandomFin = 1
         self.tauxPartiesRandom = self.tauxPartiesRandomInit
         self.augmentationTauxPartiesRandom = (self.tauxPartiesRandomFin - self.tauxPartiesRandomInit) / max(self.nbGenerations - 1, 1)
         self.nbPartiesMemes = max(1, floor(self.nbParties * (1 - self.tauxPartiesRandom)))
@@ -53,30 +53,31 @@ class Algorithme_Genetique(object):
         tAvant = datetime.now()
         sauvegardeFichiers = True
         lScoresRI, lNbCoupsRI, lDicoReseauRI, lDicoReseauERI = self.recherche_initiale(self.nbIndividus)
-        lScores = [lScoresRI] + [None for iG in range(self.nbGenerations)]
-        lNbCoups = [lNbCoupsRI] + [None for iG in range(self.nbGenerations)]
-        lDicoReseau = [self.lNbNoeuds] + [None for iG in range(self.nbGenerations+1)]
+        lScores = [None for iG in range(self.nbGenerations)]
+        lNbCoups = [None for iG in range(self.nbGenerations)]
+        lDicoReseau = [self.lNbNoeuds] + [None for iG in range(self.nbGenerations+2)]
         lDicoReseau[1] = lDicoReseauRI[0]
         self.lIndividus = []
         for i in range(self.nbIndividus):
-            self.lIndividus.append(Individu_NN(self.jeu, self, self.algo, self.lNbNoeuds, lDicoReseauERI[i], self.nbLignes, self.nbColonnes))
+            self.lIndividus.append(Individu_NN(self.jeu, self, self.algo, self.lNbNoeuds, lDicoReseauERI[i], self.nbLignes, self.nbColonnes, i))
         for iG in range(self.nbGenerations):
             lRes = [[iI,0,0] for iI in range(self.nbIndividus)]
             for iP in range(self.nbParties):
                 print('\r' + ' '*100 + f"\rEntrainement GA : Génération {iG+1} ({(iG+1)/self.nbGenerations*100:.2f}%) || Partie {iP+1} ({(iP+1)/self.nbParties*100:.2f}%) || tM : {self.tauxMutation:.2f} || tPR : {self.tauxPartiesRandom:.2f}", end="", flush=True)                
                 self.partie_entrainement(iP, lRes)
 
-            self.lIndividus, lScores[iG+1], lNbCoups[iG+1], lDicoReseauPartie, _ = self.analyse_partie(lRes, self.lIndividus, self.nbParties, True)
-            lDicoReseau[iG+2] = lDicoReseauPartie[0]
+            self.lIndividus, lScores[iG], lNbCoups[iG], lDicoReseauPartie, _ = self.analyse_partie(lRes, self.lIndividus, self.nbParties, True)
+            lDicoReseau[iG+1] = lDicoReseauPartie[0]
 
             iIndividuAM = self.nbIndividusSurvivants
             for iS in range(self.nbIndividusSurvivants):
                 dicoReseau1 = self.lIndividus[iS].modele.state_dict()
                 for _ in range(self.nbIndividusAModifier):
-                    iS2 = (iS+randint(0, self.nbIndividusSurvivants-1))%self.nbIndividusSurvivants
-                    dicoReseau2 = self.lIndividus[iS2].modele.state_dict()
+                    #iS2 = (iS+randint(0, self.nbIndividusSurvivants-1))%self.nbIndividusSurvivants
+                    #dicoReseau2 = self.lIndividus[iS2].modele.state_dict()
                     if iIndividuAM < self.nbIndividus:
-                        self.lIndividus[iIndividuAM].modele.load_state_dict(self.generer_dico_reseau_crossover(dicoReseau1, dicoReseau2, lRes[iS][1], lRes[iS2][1], ecartMax=self.tauxMutation))
+                        self.lIndividus[iIndividuAM].modele.load_state_dict(self.generer_dico_reseau_mutation(dicoReseau1, ecartMax=self.tauxMutation))
+                        #self.lIndividus[iIndividuAM].modele.load_state_dict(self.generer_dico_reseau_crossover(dicoReseau1, dicoReseau2, lRes[iS][1], lRes[iS2][1], ecartMax=self.tauxMutation))
                         iIndividuAM += 1
             for iR in range(self.nbIndividusRandom):
                 self.lIndividus[-(iR+1)].modele.load_state_dict(self.generer_reseau(self.lNbNoeuds, True, True))
@@ -130,8 +131,8 @@ class Algorithme_Genetique(object):
         if affichage:
             print('\n',*[(round(scoreM/nbParties), round(nbCoupsM/nbParties)) for iI, scoreM, nbCoupsM in lRes])
         lIndividus2 = [lIndividus[iI] for iI, _, _ in lRes]
-        lScores2 = tuple(round(res[1]/nbParties) for res in lRes)
-        lNbCoups2 = tuple(round(res[2]/nbParties) for res in lRes)
+        lScores2 = tuple((individu.iIndividu, round(res[1]/nbParties)) for individu, res in zip(lIndividus2, lRes))
+        lNbCoups2 = tuple((individu.iIndividu, round(res[2]/nbParties)) for individu, res in zip(lIndividus2, lRes))
         lDicoReseau2 = [{k: v.detach().cpu().numpy().tolist() for k, v in individu.modele.state_dict().items()} for individu in lIndividus2]
         lDicoReseauExploitable2 = [individu.modele.state_dict() for individu in lIndividus2]
         return lIndividus2, lScores2, lNbCoups2, lDicoReseau2, lDicoReseauExploitable2
@@ -156,7 +157,8 @@ class Algorithme_Genetique(object):
 
     def generer_pieces_partie(self):
         lProchainesPieces = []
-        for i in range(ceil((self.jeu.nbCoupsMax+2)/len(self.jeu.lTypePieces))):
+        nbBags = ceil((self.jeu.nbCoupsMax+2)/len(self.jeu.lTypePieces)) if self.jeu.nbCoupsMax <= 1e4 else int(1e4)
+        for i in range(nbBags):
             l = self.jeu.lTypePieces.copy()
             shuffle(l)
             lProchainesPieces.extend(l)
@@ -177,7 +179,9 @@ class Algorithme_Genetique(object):
         return dico
     
     def generer_dico_reseau_mutation(self, dicoReseau1, ecartMax):
-        dicoReseau2 = {k : v + (torch.rand_like(v)*2 - 1) * ecartMax for k,v in dicoReseau1.items()}
+        dicoReseau2 = {k : v + v*(torch.rand_like(v)*2 - 1)*ecartMax + (torch.rand_like(v)*2 - 1)*ecartMax for k,v in dicoReseau1.items()}
+        #dicoReseau2 = {k : v + v*(torch.rand_like(v)*2 - 1)*ecartMax + (torch.rand_like(v)*2 - 1)*ecartMax for k,v in dicoReseau1.items()}
+        #dicoReseau2 = {k : v * (1+torch.randn_like(v)) for k,v in dicoReseau1.items()}
         return dicoReseau2
                    
     

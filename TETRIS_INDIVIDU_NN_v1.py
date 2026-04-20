@@ -2,13 +2,14 @@ import torch
 from TETRIS_TETROMINO_v4 import*
 
 class Individu_NN(torch.nn.Module):
-    def __init__(self, jeu, algoEntrainement, algo, lNbNoeuds, dicoReseau, nbLignes, nbColonnes):
+    def __init__(self, jeu, algoEntrainement, algo, lNbNoeuds, dicoReseau, nbLignes, nbColonnes, iIndividu=None):
         super().__init__()
         
         self.jeu = jeu
         self.algoEntrainement = algoEntrainement
         self.algo = algo
         self.nbCoups = 0
+        self.iIndividu = iIndividu
         
         self.lNbNoeuds = lNbNoeuds
         lCouchesTorch = []
