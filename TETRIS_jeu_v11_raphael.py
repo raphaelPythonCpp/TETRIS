@@ -85,7 +85,7 @@ class Jeu(object):
             self.entrainement_greedy()
         self.entrainementGenetique = entrainementGenetique
         if self.entrainementGenetique :
-            self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, lNbNoeuds=self.lNbNoeuds, tauxSurvivant=0.3, tauxRandom=0, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, modeCoups=3) if self.entrainementGenetique else None
+            self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, lNbNoeuds=self.lNbNoeuds, tauxSurvivant=0.1, tauxRandom=0, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, modeCoups=3) if self.entrainementGenetique else None
             self.algoGenetique.entrainement()
         self.entrainementNES = entrainementNES
         if self.entrainementNES and False:
@@ -98,7 +98,7 @@ class Jeu(object):
         
         self.menus = menus
         if self.menus :
-            self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 100) #ATTENTION : pas le bon nom de fichier
+            self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 50) #ATTENTION : pas le bon nom de fichier
             self.menuDidactique.boucle()
         
 

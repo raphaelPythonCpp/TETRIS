@@ -13,21 +13,23 @@ horloge = pygame.time.Clock()
 police = pygame.font.SysFont("Arial", 15, bold=True, italic=False)
 
 game_infini = False
-evaluation = True
+chargement_reseau = True
+evaluation = False
 env = Jeu(fenetre=fenetre, police=police, horloge=horloge,
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes, 
           visuel=True, menus=False, nbFramesAffichage=1, lNbNoeuds=list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())),
-          entrainementGreedy=False, entrainementGenetique=True, entrainementNES=False, entrainementDRL=False,
+          entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False,
           gameInfini=game_infini)
 
 env.changer_game_nb_coups_max(game_infini)
 env.changer_somme_nb_blocs(False)
-if not env.entrainementGenetique:
+if chargement_reseau:
     with open("lDicoReseau_GA_NN.txt") as fichier:
         lDicoReseau = eval(fichier.read())
     iMax = max(i if dicoReseau is not None else -1 for i, dicoReseau in enumerate(lDicoReseau))
     if iMax > -1 :
         env.algo.charger_dico_reseau_sans_tensor(lDicoReseau[iMax])
+        #env.algo.charger_dico_reseau_sans_tensor({'0.weight' : [ [-0.20, 0.08, -0.09, -1.10, -0.18, 0.50, -0.84]], '0.bias' :[0.28]})
     #env.algo.modele = Faux !
                           #[-0.33, -0.07, -0.66, -0.94, -0.42, 0.19, 0]
                           #[0.58, 0.02, 0.83, 0.27, 0.34, 0.69, 0]

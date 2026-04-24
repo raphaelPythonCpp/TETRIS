@@ -313,6 +313,7 @@ class Algorithme(object):
         score = [hMaxG, hMaxP, sumHG, nbTN, I, nbL, sommePuits]
         scoreNormalise = [score[iS]/self.lScoresMax[iS] for iS in range(len(score))]
         self.jeu.enlever_de_grille(grille, X, Y, O, T, None, coin=False)
+        #scoreNormalise = [scoreNormalise[2], scoreNormalise[6]]
         return scoreNormalise, grilleTemp
 
     def appliquer_position(self):
@@ -484,9 +485,13 @@ class Algorithme(object):
         self.jeu.visuel = visuel
         modeleAvant = self.modele
         self.modele = modele
+        if nbParties < 1:
+            return
         if affichage:
             print('\n\n')
         for iP in range(1, nbParties+1):
+            if self.jeu.quitterProgramme :
+                continue
             if affichage:
                 print("\033[F\033[F", end="")
                 print(' '*80 + '\r' + f"Résultats précédents : Score {scoreAvant} || Nb Coups : {nbCoupsAvant}")
@@ -497,8 +502,6 @@ class Algorithme(object):
             scoreAvant, nbCoupsAvant = self.jeu.score, self.jeu.nbCoups
             sommeScores += scoreAvant
             sommeNbCoups += nbCoupsAvant
-            if self.jeu.quitterProgramme :
-                break
         self.jeu.visuel = visuelAvant
         self.modele = modeleAvant
         scoreMoyen = sommeScores/nbParties

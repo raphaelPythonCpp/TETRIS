@@ -98,10 +98,11 @@ def afficher():
 
     axe1.clear()
     lScoresIndividus = lScoresIndividusTries if trier else lScoresIndividusNormaux
+    scoreMin, scoreMax = min(lScores[-1] for lScores in lScoresIndividus), max(lScores[-1] for lScores in lScoresIndividus)
     lCourbesScores = [None]*len(lScoresIndividus)
-    for i, lScores in enumerate(lScoresIndividus):
-        c = (i+1) / len(lScoresIndividus)
-        titre = "lScoresMax" if i==0 else "lScoresMin" if i==len(lScoresIndividus)-1 else ""
+    for i, lScores in enumerate(lScoresIndividus[1:]+[lScoresIndividus[0]]):
+        c = (i+1)%len(lScoresIndividus) / (len(lScoresIndividus)-1)
+        titre = "lScoresMax" if lScores[-1]==scoreMax else "lScoresMin" if lScores[-1]==scoreMin else ""
         epaisseur = 4 if titre else 0.7
         if animation:
             lCourbesScores[i], = axe1.plot([], [], label=titre, color=(c, 1-c, (2*c)%1), linewidth=epaisseur)
@@ -119,10 +120,11 @@ def afficher():
 
     axe2.clear()
     lNbCoupsIndividus = lNbCoupsIndividusTries if trier else lNbCoupsIndividusNormaux
+    nbCoupsMin, nbCoupsMax = min(lNbCoups[-1] for lNbCoups in lNbCoupsIndividus), max(lNbCoups[-1] for lNbCoups in lNbCoupsIndividus)
     lCourbesNbCoups = [None]*len(lNbCoupsIndividus)
-    for i, lNbCoups in enumerate(lNbCoupsIndividus):
-        c = (i+1) / len(lNbCoupsIndividus)
-        titre = "lNbCoupsMax" if i==0 else "lNbCoupsMin" if i==len(lNbCoupsIndividus)-1 else ""
+    for i, lNbCoups in enumerate(lNbCoupsIndividus[1:]+[lNbCoupsIndividus[0]]):
+        c = (i+1)%len(lNbCoupsIndividus) / (len(lNbCoupsIndividus)-1)
+        titre = "lNbCoupsMax" if lNbCoups[-1]==nbCoupsMax else "lNbCoupsMin" if lNbCoups[-1]==nbCoupsMin else ""
         epaisseur = 4 if titre else 0.7
         if animation:
             lCourbesNbCoups[i], = axe2.plot([], [], label=titre, color=(c, 1-c, (2*c)%1), linewidth=epaisseur)
