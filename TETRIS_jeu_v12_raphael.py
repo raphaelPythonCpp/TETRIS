@@ -67,7 +67,7 @@ class Jeu(object):
         self.piece = None
         self.nextPiece = None
         self.holdUtilise = False
-        self.lNbNoeuds = lNbNoeuds if lNbNoeuds is not None else list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())) if algorithme else None
+        self.lNbNoeuds = lNbNoeuds if lNbNoeuds is not None else [7, 1]#list(map(int, input("lNbNoeuds (ex : '7 8 1') : ").split())) if algorithme else None
         #algo
         self.algorithme = algorithme
         if self.algorithme :
@@ -82,7 +82,7 @@ class Jeu(object):
             self.entrainement_greedy()
         self.entrainementGenetique = entrainementGenetique
         if self.entrainementGenetique and self.algorithme:
-            from TETRIS_algorithm_genetique_NN_v2 import Algorithme
+            from TETRIS_algorithm_genetique_NN_v2 import Algorithme_Genetique
             self.algoGenetique = Algorithme_Genetique(jeu=self, algo=self.algo, lNbNoeuds=self.lNbNoeuds, tauxSurvivant=0.1, tauxRandom=0, nbLignes=self.nbLignes, nbColonnes=self.nbColonnes, modeCoups=3) if self.entrainementGenetique else None
             self.algoGenetique.entrainement()
         self.entrainementNES = entrainementNES
@@ -98,9 +98,9 @@ class Jeu(object):
 
         self.menus = menus
         if self.menus :
-            from menu_didactique_v2 import Menu_didactique
-            self.menuDidactique = Menu_didactique(self, police, self.horloge, ["hauteut max grille", "hauteur max piece", "somme hauteurs", "nb trous normaux", "score irregularites", "nb lignes", "score puits"], 50, avecTorch=self.algorithme) #ATTENTION : pas le bon nom de fichier
-            self.menuDidactique.boucle()
+            from menus_v1 import Menus
+            self.menus = Menus(self, police, self.horloge)
+            self.menus.boucle()
 
         self.lTextes = (self.texteScore, self.texteNbCoups, self.texteSommeNbBlocs)
         if self.algorithme:
@@ -215,7 +215,7 @@ class Jeu(object):
             self.finJeu = True
 
     def changer_game_nb_coups_max(self, gameInfini):
-        self.nbCoupsMax = 1e9 if gameInfini else int(input("nbCoupsMax : "))
+        self.nbCoupsMax = 1e9 if gameInfini else 1000#int(input("nbCoupsMax : "))
 
     def changer_somme_nb_blocs(self, actif):
         self.calcul_sommeNbBlocs = actif

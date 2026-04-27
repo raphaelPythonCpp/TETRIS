@@ -10,19 +10,20 @@ nbColonnes, nbLignes = 10, 22
 tailleCase = min(0.4*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
 horloge = pygame.time.Clock()
-police = pygame.font.SysFont("Arial", 15, bold=True, italic=False)
+police = pygame.font.SysFont("Arial", 20, bold=True, italic=False)
 
 game_infini = False
-evaluation = True
+charger_reseau = False
+evaluation = False
 env = Jeu(fenetre=fenetre, police=police, horloge=horloge,
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes,
           visuel=True, menus=True, nbFramesAffichage=1, lNbNoeuds=None,
-          algorithme=False, entrainementGreedy=False, entrainementGenetique=True, entrainementNES=False, entrainementDRL=False,
+          algorithme=False, entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False,
           gameInfini=game_infini)
 
 env.changer_game_nb_coups_max(game_infini)
 env.changer_somme_nb_blocs(False)
-if not env.entrainementGenetique:
+if not env.entrainementGenetique and charger_reseau:
     with open("lDicoReseau_GA_NN.txt") as fichier:
         lDicoReseau = eval(fichier.read())
     iMax = max(i if dicoReseau is not None else -1 for i, dicoReseau in enumerate(lDicoReseau))
