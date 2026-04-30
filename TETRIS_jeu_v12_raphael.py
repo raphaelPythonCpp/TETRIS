@@ -6,7 +6,7 @@ from datetime import datetime
 from TETRIS_TETROMINO_v4 import*
 
 class Jeu(object):
-    def __init__(self, fenetre, police, horloge, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, menus=True, nbFramesAffichage=1, lNbNoeuds=[7,1], algorithme=False, entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
+    def __init__(self, fenetre, lAttributsPolice, horloge, tailleCase=50, nbColonnes=5, nbLignes = 8, visuel=True, menus=True, nbFramesAffichage=1, lNbNoeuds=[7,1], algorithme=False, entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False, gameInfini=False):
         self.horloge = horloge
         self.quitterProgramme = False
         self.finJeu = False
@@ -29,7 +29,9 @@ class Jeu(object):
         self.texteSommeNbBlocs = None
         #Graphiques
         self.fenetre = fenetre
-        self.police = police
+        self.lAttributsPolice = lAttributsPolice
+        nomPolice, taillePolice, grasPolice, italiquePolice = self.lAttributsPolice
+        self.police = pygame.font.SysFont(nomPolice, taillePolice, bold=grasPolice, italic=italiquePolice)
         self.nbFramesAffichage = nbFramesAffichage
         self.iFrameAffichage = 0
         self.wF, self.hF = pygame.display.get_surface().get_size()
@@ -99,7 +101,7 @@ class Jeu(object):
         self.menus = menus
         if self.menus :
             from menus_v1 import Menus
-            self.menus = Menus(self, police, self.horloge)
+            self.menus = Menus(self, self.lAttributsPolice, self.horloge)
             self.menus.boucle()
 
         self.lTextes = (self.texteScore, self.texteNbCoups, self.texteSommeNbBlocs)

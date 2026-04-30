@@ -10,12 +10,14 @@ nbColonnes, nbLignes = 10, 22
 tailleCase = min(0.4*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
 horloge = pygame.time.Clock()
-police = pygame.font.SysFont("Arial", 20, bold=True, italic=False)
+nomPolice, taillePolice, grasPolice, italiquePolice = "Arial", 20, True, False
+lAttributsPolice = (nomPolice, taillePolice, grasPolice, italiquePolice)
+police = pygame.font.SysFont(nomPolice, taillePolice, bold=grasPolice, italic=italiquePolice)
 
 game_infini = False
 charger_reseau = False
 evaluation = False
-env = Jeu(fenetre=fenetre, police=police, horloge=horloge,
+env = Jeu(fenetre=fenetre, lAttributsPolice=lAttributsPolice, horloge=horloge,
           tailleCase=tailleCase, nbColonnes=nbColonnes, nbLignes=nbLignes,
           visuel=True, menus=True, nbFramesAffichage=1, lNbNoeuds=None,
           algorithme=False, entrainementGreedy=False, entrainementGenetique=False, entrainementNES=False, entrainementDRL=False,
