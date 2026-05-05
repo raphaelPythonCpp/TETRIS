@@ -102,9 +102,9 @@ class Menu_home(object):
 
 
 class Menu_didactique(object):
-    def __init__(self, menuParent, jeu, lNomsConstantes, nbParties, avecTorch):
+    def __init__(self, menus, jeu, lNomsConstantes, nbParties, avecTorch):
         self.jeu = jeu
-        self.menuParent = menuParent
+        self.menus = menus
 
         self.actif = False
 
@@ -116,18 +116,19 @@ class Menu_didactique(object):
         self.dossierImages = "IMAGES_UTILES"
 
         #charger toutes les images
-        self.imFond = Image(self, self.dossier, self.dossierImagesBase, self.dossierImages, "background_1.jpg", None, self.jeu.fenetre.get_height(), (0, 0), False, True)
+        self.imFond = Image(self.menus, self, self.dossier, self.dossierImagesBase, self.dossierImages, "background_1.jpg", None, self.jeu.fenetre.get_height(), (0, 0), False, True)
         self.imFond.image.set_alpha(80)
-        self.texteApprentissage = Image(self, self.dossier, self.dossierImagesBase, self.dossierImages, "texte_apprentissage.png", None, 0.08*self.jeu.hF, None, True, False)
+        self.texteApprentissage = Image(self.menus, self, self.dossier, self.dossierImagesBase, self.dossierImages, "texte_apprentissage.png", None, 0.08*self.jeu.hF, None, True, False)
         self.texteApprentissage.position = ((self.jeu.wF-self.texteApprentissage.dimensions[0])/2, 0.01*self.jeu.hF)
-        self.boutonHome = Bouton(self, self.dossier, f"{self.dossierImagesBase}\\ICONS", self.dossierImages, "accueil.png", None, 50, (5,5), True, False)
-        self.boutonEcriture = Bouton(self, self.dossier, f"{self.dossierImagesBase}\\ICONS", self.dossierImages, "ecriture.png", None, 50, (55,5), True, False)
-        self.boutonPrediction = Bouton(self, self.dossier, self.dossierImagesBase, self.dossierImages, "texte_prediction.png", 0.4*self.jeu.wF, None, None, True, False)
+        self.boutonHome = Bouton(self.menus, self, self.dossier, f"{self.dossierImagesBase}\\ICONS", self.dossierImages, "accueil.png", None, 50, (5,5), True, False)
+        self.boutonEcriture = Bouton(self.menus, self, self.dossier, f"{self.dossierImagesBase}\\ICONS", self.dossierImages, "ecriture.png", None, 50, (55,5), True, False)
+        self.boutonReset = Bouton(self.menus, self, self.dossier, f"{self.dossierImagesBase}\\ICONS", self.dossierImages, "changer.png", None, 50, (105,5), True, False)
+        self.boutonPrediction = Bouton(self.menus, self, self.dossier, self.dossierImagesBase, self.dossierImages, "texte_prediction.png", 0.4*self.jeu.wF, None, None, True, False)
         self.boutonPrediction.image.position = (0.55*self.jeu.wF, 0.1*self.jeu.hF)
 
         aFondSliders = 180
         cMinFondSliders, cMaxFondSliders = 70, 200
-        self.couleurTexte = (cMinFondSliders/2, cMinFondSliders/2, cMinFondSliders/2)
+        self.couleurTexte = (255, 255, 255)#(cMaxFondSliders/2, cMaxFondSliders/2, cMaxFondSliders/2)
         wTexteSliders, hTexteSliders, espacementTexteSliders = 0.35, 0.4, 0.05
         lCouleursSliders = [("rouge", "rouge", (cMaxFondSliders,0,0,aFondSliders), (cMinFondSliders,0,0)), ("vert", "verte", (0,cMaxFondSliders,0,aFondSliders), (0,cMinFondSliders,0)), ("bleu", "bleue", (0,0,cMaxFondSliders,aFondSliders), (0,0,cMinFondSliders)), ("jaune", "jaune", (cMaxFondSliders,cMaxFondSliders,0,aFondSliders), (cMinFondSliders,cMinFondSliders,0)), ("violet", "violette", (cMaxFondSliders,0,cMaxFondSliders,aFondSliders), (cMinFondSliders,0,cMinFondSliders)), ("orange", "orange", (cMaxFondSliders,(cMinFondSliders*0.7+0.3*cMaxFondSliders),0,aFondSliders), (cMinFondSliders,cMinFondSliders//2,0)), ("cyan", "cyan", (0,cMaxFondSliders,cMaxFondSliders,aFondSliders), (0,cMinFondSliders,cMinFondSliders))]
         lCarSliders = [(nom, "cadre_barre_11.png", "carre_noir.png", f"carre_{couleur1}.png", f"forme_{couleur2}.png", rgbaFond, rgbTexte) for nom, (couleur1, couleur2, rgbaFond, rgbTexte) in zip(lNomsConstantes, lCouleursSliders)]
@@ -136,9 +137,10 @@ class Menu_didactique(object):
         assert len(lNomsConstantes) <= len(lCouleursSliders), "Plus de constantes que de couleurs disponibles"
         self.lSliders = []
         for iS, (nom,nomCadre,nomCarreNoir,nomCarreColore,nomForme,couleurFond,couleurTexte) in enumerate(lCarSliders):
-            self.lSliders.append(Slider(self, self.dossier, f"{self.dossierImagesBase}\\ELEMENTS_SLIDERS", self.dossierImages, nom, nomCadre, nomCarreNoir, nomCarreColore, nomForme, (0.03*self.jeu.wF, yMinSliders+iS*hSlider, 0.5*self.jeu.wF, 0.9*hSlider), (wTexteSliders, hTexteSliders, espacementTexteSliders), True, -1, 1, 13, None, couleurFond, couleurTexte, True))
-        self.sliderProgressionEvaluation = Slider(self, self.dossier, f"{self.dossierImagesBase}\\ELEMENTS_SLIDERS", self.dossierImages, "Progression Evaluation", "cadre_barre_11.png", "carre_rouge.png", "carre_vert.png", "forme_jaune.png", (0.55*self.jeu.wF, 0.2*self.jeu.hF, 0.43*self.jeu.wF, 0.5*hSlider), (wTexteSliders, hTexteSliders, espacementTexteSliders), True, 0, 100, 20, 0, (cMaxFondSliders/2, cMaxFondSliders/2, cMaxFondSliders/2, aFondSliders), self.couleurTexte, False)
+            self.lSliders.append(Slider(self.menus, self, self.dossier, f"{self.dossierImagesBase}\\ELEMENTS_SLIDERS", self.dossierImages, nom, nomCadre, nomCarreNoir, nomCarreColore, nomForme, (0.03*self.jeu.wF, yMinSliders+iS*hSlider, 0.5*self.jeu.wF, 0.9*hSlider), (wTexteSliders, hTexteSliders, espacementTexteSliders), True, -1, 1, 13, None, couleurFond, self.couleurTexte, True))
+        self.sliderProgressionEvaluation = Slider(self.menus, self, self.dossier, f"{self.dossierImagesBase}\\ELEMENTS_SLIDERS", self.dossierImages, "Progression Evaluation", "cadre_barre_11.png", "carre_rouge.png", "carre_vert.png", "forme_jaune.png", (0.55*self.jeu.wF, 0.2*self.jeu.hF, 0.43*self.jeu.wF, 0.5*hSlider), (wTexteSliders, hTexteSliders, espacementTexteSliders), True, 0, 100, 20, 0, (cMaxFondSliders/2, cMaxFondSliders/2, cMaxFondSliders/2, aFondSliders), self.couleurTexte, False)
         self.lSliders.append(self.sliderProgressionEvaluation)
+        
 
         self.avecTorch = avecTorch
         if self.avecTorch:
@@ -156,6 +158,7 @@ class Menu_didactique(object):
         self.texteApprentissage.afficher(self.jeu.fenetre)
         self.boutonHome.afficher(self.jeu.fenetre)
         self.boutonEcriture.afficher(self.jeu.fenetre)
+        self.boutonReset.afficher(self.jeu.fenetre)
         self.boutonPrediction.afficher(self.jeu.fenetre)
         for slider in self.lSliders:
             slider.afficher(self.jeu.fenetre)
@@ -176,38 +179,36 @@ class Menu_didactique(object):
         if self.boutonHome.gerer_souris():
             self.actif = False
         if self.boutonEcriture.gerer_souris():
-            self.menuParent.modeTexte = "POLICE" if self.menuParent.modeTexte == "IMAGES" else "IMAGES"
+            self.menus.modeTexte = "POLICE" if self.menus.modeTexte == "IMAGES" else "IMAGES"
             for slider in self.lSliders:
                 slider.changer_mode_texte()
             self.changer_resultats()
+        if self.boutonReset.gerer_souris():
+            for slider in self.lSliders[:-1]:
+                slider.iValeur = slider.nbValeurs // 2
+                slider.maj_valeur()
         if self.boutonPrediction.gerer_souris():
             self.evaluation()
         for slider in self.lSliders:
             slider.gerer_souris()
 
     def changer_resultats(self):
-        if self.menuParent.modeTexte == "POLICE" :
-            self.texteScoreMoyen = self.menuParent.creer_surface_texte(f"{self.scoreMoyen:.2f}", 0.3*self.jeu.wF, self.h, 0.05).render(f"{self.scoreMoyen:.2f}", True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteScoreMoyen = self.generateurTexte.creer_surface_texte(f"{self.scoreMoyen:.2f}", 0.3*self.jeu.wF, 0.1*self.jeu.hF, 0.05)
+        self.texteScoreMoyen = self.menus.generateurTexte.creer_surface_texte(f"{self.scoreMoyen:.2f}", 0.3*self.jeu.wF, self.jeu.hF, 0.05, self.couleurTexte)
         self.positionTexteScoreMoyen = (0.6*self.jeu.wF, 0.3*self.jeu.hF)
-        if self.menuParent.modeTexte == "POLICE" :
-            self.texteNbCoupsMoyen = self.police.render(f"{self.nbCoupsMoyen:.2f}", True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteNbCoupsMoyen = self.generateurTexte.creer_surface_texte(f"{self.nbCoupsMoyen:.2f}", 0.3*self.jeu.wF, 0.1*self.jeu.hF, 0.05)
+        self.texteNbCoupsMoyen = self.menus.generateurTexte.creer_surface_texte(f"{self.nbCoupsMoyen:.2f}", 0.3*self.jeu.wF, self.jeu.hF, 0.05, self.couleurTexte)
         self.positionTexteNbCoupsMoyen = (0.6*self.jeu.wF, 0.45*self.jeu.hF)
 
-    def modifier_dimensions(self, image, w=None, h=None):
-        return self.menuParent.modifier_dimensions(image, w=None, h=None)
+    """def modifier_dimensions(self, image, w=None, h=None):
+        return self.menus.modifier_dimensions(image, w=None, h=None)
 
     def ouvrir_image(self, dossier1, dossier2, nom, dossier3=None, w=None, h=None, transparence=False, enregistrement=False):
-        return self.menuParent.ouvrir_image(dossier1, dossier2, nom, dossier3=None, w=None, h=None, transparence=False, enregistrement=False)
+        return self.menus.ouvrir_image(dossier1, dossier2, nom, dossier3=None, w=None, h=None, transparence=False, enregistrement=False)
 
     def extraire_tous_boutons(self, dossier1, dossier2, dossier3, nom, lNomsBoutons):
-        self.menuParent.extraire_tous_boutons(dossier1, dossier2, dossier3, nom, lNomsBoutons)
+        self.menus.extraire_tous_boutons(dossier1, dossier2, dossier3, nom, lNomsBoutons)
 
     def changer_couleur(self, image, facteur):
-        return self.menuParent.changer_couleur(image, facteur)
+        return self.menus.changer_couleur(image, facteur)"""
 
 
 
@@ -215,8 +216,9 @@ class Menu_didactique(object):
 
 
 class Slider(object):
-    def __init__(self, menuParent, dossier1, dossier2, dossier3, nom, nomCadre, nomCarreNoir, nomCarreColore, nomForme, rectangleFond, caracteristiquesTexte, enregistrement, valeurMin, valeurMax, nbValeurs, iValeur, couleurFond, couleurTexte, interactif):
-        self.menuParent = menuParent
+    def __init__(self, menus, menu, dossier1, dossier2, dossier3, nom, nomCadre, nomCarreNoir, nomCarreColore, nomForme, rectangleFond, caracteristiquesTexte, enregistrement, valeurMin, valeurMax, nbValeurs, iValeur, couleurFond, couleurTexte, interactif):
+        self.menus = menus
+        self.menu = menu
         self.interactif = interactif
 
         self.hover = False
@@ -225,16 +227,16 @@ class Slider(object):
         self.fond = pygame.Surface((self.wFond, self.hFond), pygame.SRCALPHA)
         self.borderRadiusFond = round(min(self.fond.get_size())*0.3)
 
-        self.imCadre = Image(self.menuParent, dossier1, dossier2, dossier3, nomCadre, w=None, h=None, position=(0.15*self.wFond + caracteristiquesTexte[0]*self.wFond, 0.55*self.hFond), transparence=False, enregistrement=enregistrement)
+        self.imCadre = Image(self.menus, self.menu, dossier1, dossier2, dossier3, nomCadre, w=None, h=None, position=(0.15*self.wFond + caracteristiquesTexte[0]*self.wFond, 0.55*self.hFond), transparence=False, enregistrement=enregistrement)
         self.wCarres = round(0.4*self.wFond / (nbValeurs-1+0.32))
         self.imCadre.dimensions = (round(0.4*self.wFond), round(1.21*self.wCarres))
         self.imCadre.image = pygame.transform.smoothscale(self.imCadre.image, self.imCadre.dimensions)
         hCarres = round(0.78*self.imCadre.dimensions[1])
         self.wCarres = round(hCarres*1.075)
-        self.imCarreNoir = Image(self.menuParent, dossier1, dossier2, dossier3, nomCarreNoir, None, hCarres, None, False, enregistrement)
-        self.imCarreColore = Image(self.menuParent, dossier1, dossier2, dossier3, nomCarreColore, None, hCarres, None, False, enregistrement)
+        self.imCarreNoir = Image(self.menus, self.menu, dossier1, dossier2, dossier3, nomCarreNoir, None, hCarres, None, False, enregistrement)
+        self.imCarreColore = Image(self.menus, self.menu, dossier1, dossier2, dossier3, nomCarreColore, None, hCarres, None, False, enregistrement)
         hForme = round(0.7*hCarres)
-        self.imForme = Image(self.menuParent, dossier1, dossier2, dossier3, nomForme, None, hForme, None, True, enregistrement)
+        self.imForme = Image(self.menus, self.menu, dossier1, dossier2, dossier3, nomForme, None, hForme, None, True, enregistrement)
         self.xDebutCarres = round(self.imCadre.position[0] + 0.24*hCarres)
         self.yDebutCarres = round(self.imCadre.position[1] + 0.13*hCarres)
 
@@ -315,65 +317,56 @@ class Slider(object):
         if iValeur != self.iValeur:
             self.iValeur = iValeur
             self.maj_valeur()
-            self.menuParent.afficher()
+            self.menu.afficher()
 
     def maj_valeur(self):
         self.valeur = self.lValeurs[self.iValeur]
-        if self.menuParent.modeTexte == "POLICE":
-            self.texteValeur = self.police.render(str(self.valeur), True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteValeur = self.menuParent.generateurTexte.creer_surface_texte(str(self.valeur), 0.2*self.wFond, 0.3*self.hFond, 0.1)
+        self.texteValeur = self.menus.generateurTexte.creer_surface_texte(str(self.valeur), 0.2*self.wFond, 0.3*self.hFond, 0.1, self.couleurTexte)
         self.positionTexteV = (self.imCadre.position[0]+(self.imCadre.dimensions[0]-self.texteValeur.get_width())/2, self.imCadre.position[1]-self.texteValeur.get_height()-0.05*self.hFond)
 
     def maj_valeur_min(self):
-        if self.menuParent.modeTexte == "POLICE":
-            self.texteValeurMin = self.police.render(str(self.valeurMin), True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteValeurMin = self.menuParent.generateurTexte.creer_surface_texte(str(self.valeurMin), 0.2*self.wFond, 0.3*self.hFond, 0.05)
+        self.texteValeurMin = self.menus.generateurTexte.creer_surface_texte(str(self.valeurMin), 0.2*self.wFond, 0.3*self.hFond, 0.05, self.couleurTexte)
         self.positionTexteVMin = (self.imCadre.position[0]-(self.texteValeurMin.get_width()+self.imCarreNoir.image.get_width()/2), self.imCadre.position[1]+(self.imCadre.dimensions[1]-self.texteValeurMin.get_height())/2)
 
     def maj_valeur_max(self):
-        if self.menuParent.modeTexte == "POLICE":
-            self.texteValeurMax = self.police.render(str(self.valeurMax), True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteValeurMax = self.menuParent.generateurTexte.creer_surface_texte(str(self.valeurMax), 0.2*self.wFond, 0.3*self.hFond, 0.05)
+        self.texteValeurMax = self.menus.generateurTexte.creer_surface_texte(str(self.valeurMax), 0.2*self.wFond, 0.3*self.hFond, 0.05, self.couleurTexte)
         self.positionTexteVMax = (self.imCadre.position[0]+self.imCadre.dimensions[0]+self.imCarreNoir.image.get_width()/2, self.imCadre.position[1]+(self.imCadre.dimensions[1]-self.texteValeurMax.get_height())/2)
 
     def maj_nom(self):
         wT, hT, eT = self.caracteristiquesTexte
         wTexte = wT*self.wFond
         hTexte = hT*self.hFond
-        if self.menuParent.modeTexte == "POLICE":
-            self.texteNom = self.police.render(self.nom, True, self.couleurTexte)
-        elif self.menuParent.modeTexte == "IMAGES":
-            self.texteNom = self.menuParent.generateurTexte.creer_surface_texte(self.nom, wTexte, hTexte, eT)
+        self.texteNom = self.menus.generateurTexte.creer_surface_texte(self.nom, wTexte, hTexte, eT, self.couleurTexte)
         self.positionTexteNom = (0.03*self.wFond + (wTexte-self.texteNom.get_width())/2, self.imCadre.position[1])#(self.hFond-self.texteNom.get_height())/2)
 
 
 
 
-class Generateur_Texte(object):
-    def __init__(self, menus, menu, lAttributsPolice, dossier1, dossier2, dossier3, dicoNoms, transparence, enregistrement):
-        self.menus = menus #class Menus
-        self.menu = menu   #class Menu_Didactique, Menu_paramètre....
 
-        self.lImages = {nom : Image(self.menu, dossier1, dossier2, dossier3, nomFichier, None, None, None, transparence, enregistrement) for nom,nomFichier in dicoNoms.items()}
+
+
+class Generateur_Texte(object):
+    def __init__(self, menus, lAttributsPolice, dossier1, dossier2, dossier3, dicoNoms, transparence, enregistrement):
+        self.menus = menus #class Menus
+
+        self.lImages = {nom : Image(self.menus, self, dossier1, dossier2, dossier3, nomFichier, None, None, None, transparence, enregistrement) for nom,nomFichier in dicoNoms.items()}
         self.dicoImagesVu = {}
         self.nomPolice, self.taillePolice, self.grasPolice, self.italiquePolice = lAttributsPolice
         self.dicoPoliceVues = {}
 
-    def recuperer_image(self, nom, w, h, modeTexte):
-        cle = (nom, w, h)
-        dico = self.dicoImagesVu if modeTexte == "IMAGES" else self.dicoPoliceVues
-        if modeTexte == "IMAGES":
+    def recuperer_image(self, nom, w, h):
+        dico = self.dicoImagesVu if self.menus.modeTexte == "IMAGES" else self.dicoPoliceVues
+        if self.menus.modeTexte == "IMAGES":
+            cle = (nom, w, h)
             if cle not in dico:
                 image, _ = self.menus.modifier_dimensions(self.lImages[nom].image, w, h)
                 dico[cle] = image
-            return image
-        elif modeTexte == "POLICE":
-            if h not in dico:
-                police = pygame.font.SysFont(self.nomPolice, h, bold=self.grasPolice, italic=self.italiquePolice)
-                print(f"hTheorique = {h} VS hRender = {police.render(\"None\", True, (0,0,0).get_h")
+            return dico[cle]
+        elif self.menus.modeTexte == "POLICE":
+            cle = round(h)
+            if cle not in dico:
+                police = pygame.font.SysFont(self.nomPolice, cle, bold=self.grasPolice, italic=self.italiquePolice)
+                #print(f"hTheorique = {cle} VS hRender = {police.render('None', True, (0,0,0)).get_height()}")
                 dico[cle] = police
             return dico[cle].render(nom, True, (0,0,0))
 
@@ -384,7 +377,7 @@ class Generateur_Texte(object):
             hM = (hL + hR)/2
             wImagesTotal = 0
             for car in texte:
-                wImagesTotal += self.recuperer_image(car, hTotal, hM, self.menus.modeTexte).get_width()
+                wImagesTotal += self.recuperer_image(car, hTotal, hM).get_width()
             wEspacement = (espacement*wImagesTotal) / (len(texte)-1) if len(texte) > 1 else 0
             wTotal2 = wImagesTotal + wEspacement*(len(texte)-1)
             if wTotal2 > wTotal:
@@ -400,14 +393,14 @@ class Generateur_Texte(object):
         wEspacement = (espacement*wImagesTotal) / (len(texte)-1) if len(texte) > 1 else 0
         wTotal = wImagesTotal + wEspacement*(len(texte)-1)
         if self.menus.modeTexte == "IMAGES":
-            surface = pygame.Surface((wTotal, hI), pygame.SRCALPHA).set_alpha(0)
-            #surface.fill((0,0,0,100))
+            surface = pygame.Surface((wTotal, hI), pygame.SRCALPHA)
+            surface.set_alpha(0)
             x = 0
             for image in lImages:
                 surface.blit(image, (x, 0))
                 x += image.get_width() + wEspacement
         else :
-            surface = self.dicoPoliceVues[hI].render(texte, True, couleur)
+            surface = self.dicoPoliceVues[round(hI)].render(texte, True, couleur)
         return surface
 
 
@@ -416,12 +409,13 @@ class Generateur_Texte(object):
 
 
 class Bouton(object):
-    def __init__(self, menuParent, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement):
-        self.menuParent = menuParent
-        self.image = Image(self.menuParent, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement)
+    def __init__(self, menus, menu, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement):
+        self.menus = menus
+        self.menu = menu
+        self.image = Image(self.menus, self.menu, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement)
         self.imageNormal = self.image.image.copy()
-        self.imageHover = self.menuParent.changer_couleur(self.imageNormal, 1.3)
-        self.imagePressed = self.menuParent.changer_couleur(self.imageNormal, 0.8)
+        self.imageHover = self.menus.changer_couleur(self.imageNormal, 1.3)
+        self.imagePressed = self.menus.changer_couleur(self.imageNormal, 0.8)
         self.hover, self.pressed = False, False
 
     def gerer_souris(self, xS=None, yS=None, appuie=None):
@@ -445,9 +439,10 @@ class Bouton(object):
 
 
 class Image(object):
-    def __init__(self, menuParent, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement):
-        self.menuParent = menuParent
-        self.image, self.dimensions = self.menuParent.ouvrir_image(dossier1, dossier2, nom, dossier3, w, h, transparence, enregistrement)
+    def __init__(self, menus, menu, dossier1, dossier2, dossier3, nom, w, h, position, transparence, enregistrement):
+        self.menus = menus
+        self.menu = menu
+        self.image, self.dimensions = self.menus.ouvrir_image(dossier1, dossier2, nom, dossier3, w, h, transparence, enregistrement)
         self.position = position
 
     def afficher(self, fenetre, position=None):

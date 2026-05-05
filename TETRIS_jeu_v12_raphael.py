@@ -100,7 +100,7 @@ class Jeu(object):
 
         self.menus = menus
         if self.menus :
-            from menus_v1 import Menus
+            from menus_v2 import Menus
             self.menus = Menus(self, self.lAttributsPolice, self.horloge)
             self.menus.boucle()
 
