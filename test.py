@@ -1,22 +1,12 @@
-import pygame
+from PIL import Image
 
-pygame.init()
-fenetre = pygame.display.set_mode((200,200))
-xC, yC, wC, hC = (90,90,20,20)
-run = True
-while run:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            xS, yS = pygame.mouse.get_pos()
-            if (xC <= xS <= xC+wC) and (yC <= yS <= yC+hC):
-                run = False
-    fenetre.fill((0,0,0))
-    pygame.draw.rect(fenetre, (0,0,255), (xC, yC, wC, hC))
-    pygame.display.flip()
-    for i in range(10000):
-        print('\r',i, end='', flush=True)
-    print()
-
-pygame.quit()
+for nom in ["grille_I", "grille_T", "grille_X"]:
+    image = Image.open(f"MENUS\\IMAGES_BASE\\IMAGES\\{nom}.png").convert("RGBA")
+    pixels = image.load()
+    w, h = image.size
+    for y in range(h):
+        for x in range(w):
+            r,g,b,a = pixels[x, y]
+            if max(r,g,b) < 100:
+                pixels[x, y] = (255-r,255-g,255-b,a)
+    image.save(f"MENUS\\IMAGES_BASE\\IMAGES\\{nom}_blanc.png")

@@ -3,10 +3,10 @@ from math import floor
 
 pygame.init()
 
-wFenetre, hFenetre = 800, 600
+wFenetre, hFenetre = 900, 600
 fenetre = pygame.display.set_mode((wFenetre, hFenetre))
 pygame.display.set_caption("TETRIS v12 Raphaël")
-nbColonnes, nbLignes = 10, 22
+nbColonnes, nbLignes = 8, 15
 tailleCase = min(0.4*wFenetre / nbColonnes, 0.8*hFenetre / nbLignes)
 
 horloge = pygame.time.Clock()

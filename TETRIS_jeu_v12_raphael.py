@@ -37,6 +37,9 @@ class Jeu(object):
         self.wF, self.hF = pygame.display.get_surface().get_size()
         self.tailleCase = tailleCase
         self.bordure = 0.03
+        self.couleurFond = (255,255,255)
+        self.couleurFondGrille = tuple(255-cF for cF in self.couleurFond)
+        self.couleurBorduresGrille = tuple(0.8*cFG+0.2*cF for cFG,cF in zip(self.couleurFondGrille, self.couleurFond))
         #Grille
         self.nbColonnes, self.nbLignes = nbColonnes, nbLignes
         self.xDebutCases, self.yDebutCases = self.wF/2 - nbColonnes/2*tailleCase, self.hF/2 - nbLignes/2*tailleCase
@@ -100,8 +103,9 @@ class Jeu(object):
 
         self.menus = menus
         if self.menus :
-            from menus_v2 import Menus
+            from menus_v3 import Menus
             self.menus = Menus(self, self.lAttributsPolice, self.horloge)
+            self.menus.menuHome.actif = True
             self.menus.boucle()
 
         self.lTextes = (self.texteScore, self.texteNbCoups, self.texteSommeNbBlocs)
@@ -145,10 +149,13 @@ class Jeu(object):
             print(f"Partie {partie} : Score {self.score} || Nb Coups : {self.nbCoups}")
             if self.quitterProgramme :
                 break
+            if self.menus:
+                self.menus.menuGameOver.actif = True
+                self.menus.boucle()
 
     def jouer(self, modeAlgo=False):
         self.reset(modeAlgo=modeAlgo)
-        while not self.finJeu:
+        while not self.finJeu and not self.quitterProgramme:
             if self.algorithme and self.modeAlgo:
                 for i in range(self.nbFramesAffichage):
                     self.algo.appliquer_position()
@@ -165,7 +172,7 @@ class Jeu(object):
                 self.afficher()
 
     def afficher(self):
-        self.fenetre.fill((0,0,0))
+        self.fenetre.fill(self.couleurFond)
 
         if self.algorithme:
             self.algo.afficher_toutes_positions()
@@ -193,14 +200,14 @@ class Jeu(object):
             if ombre :
                 self.mettre_dans_grille(grille, piece.x, piece.yOmbre, piece.orientation, piece.type, (220,200,200), coin)
             self.mettre_dans_grille(grille, piece.x, piece.y, piece.orientation, piece.type, piece.couleur, coin)
-        pygame.draw.rect(self.fenetre, (240, 240, 240), (xDebut, yDebut, tailleCase*nbColonnes, tailleCase*nbLignes))
+        pygame.draw.rect(self.fenetre, self.couleurBorduresGrille, (xDebut-self.bordure*tailleCase, yDebut-self.bordure*tailleCase, tailleCase*(nbColonnes+2*self.bordure), tailleCase*(nbLignes+2*self.bordure)))
         for y in range(nbLignes):
             for x in range(nbColonnes):
                 if grille[y][x] is not None:
                     r,g,b = grille[y][x] if grille[y][x] != False else (0,0,0)
-                    pygame.draw.rect(self.fenetre, (r,g,b), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-2*self.bordure)))
                 else :
-                    pygame.draw.rect(self.fenetre, (255,255,255), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-2*self.bordure)))
+                    r,g,b = self.couleurFondGrille
+                pygame.draw.rect(self.fenetre, (r,g,b), (xDebut+tailleCase*(x+self.bordure), yDebut+tailleCase*(y+self.bordure), tailleCase*(1-2*self.bordure), tailleCase*(1-2*self.bordure)))
         if piece is not None:
             if ombre :
                 self.enlever_de_grille(grille, piece.x, piece.yOmbre, piece.orientation, piece.type, (220,200,200), coin)
